@@ -1,0 +1,85 @@
+@import "_variables";
+
+body {
+  background-color: $white;
+}
+
+.app {
+  padding: 0.5vw 10vw;
+  font-family: $primary-font, sans-serif;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 150px;
+    position: relative;
+    .heading {
+      font-weight: 900;
+      text-align: left;
+
+      p {
+        font-size: 60px;
+        margin: 0;
+      }
+      button {
+        margin-top: 50px;
+        font-size: 30px;
+        height: auto;
+        padding: 10px 3vw;
+        border: 1px solid $red;
+        border-radius: 3px;
+        background-color: $red;
+        color: $white;
+        cursor: pointer;
+        transition: 0.4s;
+      }
+      button:hover {
+        background-color: $white;
+        color: $red;
+      }
+    }
+    img {
+      max-height: 350px;
+    }
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@media (max-width: 900px) {
+  .app {
+    .container {
+      flex-direction: column-reverse;
+      .heading {
+        p {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .app {
+    .container {
+      flex-direction: column-reverse;
+      .heading {
+        p {
+          font-size: 30px;
+        }
+      }
+    }
+
+    img {
+      height: 200px;
+    }
+  }
+}

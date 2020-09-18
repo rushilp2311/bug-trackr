@@ -1,14 +1,37 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "../styles/app.scss";
+import SignUp from "./SignUp";
+import SignIn from "./SignIn";
+import Home from "./Home";
 function Header() {
   return (
-    <header className='header'>
-      <p>Bug Trackr</p>
-      <div className='header__links'>
-        <p>Sign In</p>
-        <button>Sign Up</button>
-      </div>
-    </header>
+    <Router>
+      <header className='header'>
+        <Link to='/' style={{ textDecoration: "none" }}>
+          <p className='logo'>Bug Trackr</p>
+        </Link>
+        <div className='header__links'>
+          <Link to='/signin' style={{ textDecoration: "none" }}>
+            <p>Sign In</p>
+          </Link>
+          <Link to='/signup' style={{ textDecoration: "none" }}>
+            <button>Sign Up</button>
+          </Link>
+        </div>
+      </header>
+      <Switch>
+        <Route path='/signin'>
+          <SignIn />
+        </Route>
+        <Route path='/signup'>
+          <SignUp />
+        </Route>
+        <Route path='/'>
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 export default Header;

@@ -28,16 +28,16 @@ body {
         font-size: 30px;
         height: auto;
         padding: 10px 3vw;
-        border: 1px solid $red;
+        border: 1px solid $main-color;
         border-radius: 3px;
-        background-color: $red;
-        color: $white;
+        background-color: $main-color;
+        color: $primary-color;
         cursor: pointer;
         transition: 0.4s;
       }
       button:hover {
         background-color: $white;
-        color: $red;
+        color: $main-color;
       }
     }
     img {
@@ -57,12 +57,17 @@ body {
 @media (max-width: 900px) {
   .app {
     .container {
-      flex-direction: column-reverse;
+      margin-top: 50px;
+      flex-direction: column;
       .heading {
         p {
           font-size: 40px;
         }
       }
+    }
+    img {
+      margin-top: 30px;
+      height: 200px;
     }
   }
 }
@@ -70,15 +75,21 @@ body {
 @media (max-width: 500px) {
   .app {
     .container {
-      flex-direction: column-reverse;
+      margin-top: 50px;
+      flex-direction: column;
       .heading {
         p {
           font-size: 30px;
+        }
+        button {
+          font-size: 24px;
+          width: 100%;
         }
       }
     }
 
     img {
+      margin-top: 30px;
       height: 200px;
     }
   }

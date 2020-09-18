@@ -1,0 +1,84 @@
+.main__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .form__container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-evenly;
+    .form__left {
+      display: flex;
+      align-items: center;
+      img {
+        height: 500px;
+        width: 500px;
+      }
+    }
+    .form__right {
+      display: flex;
+      flex-direction: column;
+      width: 35%;
+      > p {
+        font-size: 40px;
+      }
+      .form__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        background-color: rgb(218, 226, 250);
+        border: 1px solid rgba(209, 210, 229, 0);
+        border-radius: 2px;
+        position: relative;
+        width: 100%;
+
+        label {
+          font-size: 18px;
+          color: $main-color;
+          margin-bottom: 5px;
+          font-weight: 600;
+          padding: 10px 10px 5px;
+          position: absolute;
+        }
+        input {
+          padding: 8px;
+          font-size: 24px;
+          color: $main-color;
+          padding: 1.9em 0.625rem 0.625rem;
+          background-color: rgb(218, 226, 250);
+          border: 1px solid $main-color;
+          border-radius: 2px;
+        }
+        input::focus {
+          border: 1px solid $main-color;
+        }
+      }
+      button {
+        width: 100%;
+        font-size: large;
+        background-color: $main-color;
+        border: 1px solid $main-color;
+        border-radius: 5px;
+        color: $primary-color;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 765px) {
+  .main__container {
+    .form__container {
+      .form__left {
+        width: 0px;
+        img {
+          display: none;
+        }
+      }
+      .form__right {
+        width: 100%;
+      }
+    }
+  }
+}

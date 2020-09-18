@@ -2,8 +2,8 @@
 .header {
   display: flex;
   justify-content: space-between;
-  > p {
-    color: $dark-red;
+  .logo {
+    color: $main-color;
     font-size: 34px;
     font-weight: 600;
     font-family: $header-font;
@@ -24,19 +24,21 @@
   }
 
   button {
+    text-decoration: none;
     padding: 1px 20px;
     text-align: center;
-    border: 1px solid $red;
+    border: 1px solid $main-color;
     border-radius: 3px;
     background-color: $white;
-    color: $red;
+    color: $main-color;
     height: 40px;
     cursor: pointer;
+    font-size: 20px;
     transition: 0.4s;
   }
   button:hover {
-    background-color: $red;
-    color: $white;
+    background-color: $main-color;
+    color: $primary-color;
   }
 }
 
@@ -44,7 +46,7 @@
   .header {
     flex-direction: column;
     justify-content: center;
-    > p {
+    .logo {
       margin-top: 20px;
       margin-bottom: 0;
       font-size: 37px;

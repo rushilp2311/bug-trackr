@@ -21,15 +21,9 @@ function Header() {
         </div>
       </header>
       <Switch>
-        <Route path='/signin'>
-          <SignIn />
-        </Route>
-        <Route path='/signup'>
-          <SignUp />
-        </Route>
-        <Route path='/'>
-          <Home />
-        </Route>
+        <Route path='/signin' component={SignIn} />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/' component={Home} />
       </Switch>
     </Router>
   );

@@ -41,6 +41,24 @@
     background-color: $main-color;
     color: $primary-color;
   }
+  .logout__button {
+    text-decoration: none;
+    padding: 1px 20px;
+    text-align: center;
+    border: 1px solid $main-color;
+    border-radius: 3px;
+    background-color: $white;
+    color: $main-color;
+    height: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.4s;
+  }
+  .logout__button:hover {
+    border: 1px solid rgb(247, 131, 131);
+    background-color: $danger;
+    color: $white;
+  }
 }
 
 @media (max-width: 500px) {

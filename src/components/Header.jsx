@@ -3,8 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import "../styles/app.scss";
 
 import auth from "../services/authService";
-function Header() {
-  const user = auth.getCurrentUser();
+function Header(props) {
+  const { user } = props;
   return (
     <header className='header'>
       <Link to='/' style={{ textDecoration: "none" }}>
@@ -27,7 +27,7 @@ function Header() {
               <p>{auth.getCurrentUser().name}</p>
             </NavLink>
             <NavLink to='/logout'>
-              <button>Logout</button>
+              <button className='logout__button'>Logout</button>
             </NavLink>
           </React.Fragment>
         )}

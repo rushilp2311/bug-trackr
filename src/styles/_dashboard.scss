@@ -1,0 +1,157 @@
+@import "_variables";
+.container {
+  display: flex;
+  justify-content: center !important;
+  .dashboard__container {
+    width: 80%;
+    .dashboard__header {
+      .team_name {
+        font-size: 20px;
+        text-align: center;
+        padding-bottom: 10px;
+      }
+      .dashboard__controls {
+        position: relative;
+        display: flex;
+        input {
+          display: block;
+          width: 100% !important;
+          padding: 5px 25px;
+          line-height: 20px;
+          overflow: visible;
+          color: #303336;
+          margin-right: 20px;
+        }
+        input:focus {
+          outline-offset: 0px !important;
+          outline: none !important;
+          border: 0.4px solid $main-color;
+          border-radius: 4px;
+          padding: 4px 32.5px;
+        }
+        .search_logo {
+          overflow: hidden;
+          position: absolute;
+          top: 11px;
+          left: 10px;
+          display: block;
+          text-align: center;
+          pointer-events: none;
+          color: #959da5;
+        }
+        .dashboard__controls__button {
+          padding: 5px 12px;
+          min-width: 100px;
+          border: 0;
+          background-color: $success;
+          border-radius: 4px;
+          color: $white;
+        }
+        .dashboard__controls__button:hover {
+          background-color: darken($color: $success, $amount: 10);
+        }
+      }
+    }
+    .dashboard__body {
+      margin-top: 20px;
+      .dashboard__info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: rgb(233, 233, 235);
+        border: 1px solid #e1e4e8;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        padding: 16px;
+        .dashboard__bugstatus {
+          display: flex;
+          flex-direction: row;
+          width: 50%;
+          .open__bugs {
+            width: auto;
+            margin-right: 25px;
+          }
+          .closed__bugs {
+            width: auto;
+          }
+        }
+        .dashboard__filters {
+          display: flex;
+          flex-direction: row;
+          width: 50%;
+          justify-content: flex-end;
+          details {
+            margin-right: 25px;
+
+            summary {
+              display: inline-block;
+              padding: 0;
+              cursor: pointer;
+              span {
+                font-size: 18px;
+              }
+            }
+            details-menu {
+              border-radius: 5px;
+              position: absolute;
+              z-index: 99;
+              overflow: hidden;
+              top: auto;
+              bottom: auto;
+              left: auto;
+              background-color: $white;
+              animation-duration: 0.12s;
+              animation: cubic-bezier(0, 0.1, 0.1, 1) backwards;
+            }
+          }
+        }
+      }
+      .dashboard__bugslist {
+        ul {
+          padding: 0;
+          .bugs__list {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 8px;
+            height: auto;
+            border: 1px solid #e1e4e8;
+            .bugs__list__content {
+              .bugs__list__info__header {
+                display: flex;
+                flex-direction: row;
+                > span {
+                  color: $danger;
+                }
+
+                .bugs__list__headers {
+                  margin-left: 10px;
+                  .header {
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                  }
+                  .subheader {
+                    font-size: 12px;
+                    color: #586069;
+                    margin: 0;
+                  }
+                }
+              }
+            }
+
+            .bugs__list__comments {
+              padding-right: 8px;
+            }
+          }
+          .bugs__list:hover {
+            background-color: rgb(233, 233, 235);
+          }
+        }
+      }
+    }
+  }
+}

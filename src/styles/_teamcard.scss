@@ -1,1 +1,57 @@
 @import "_variables";
+
+.teamcard__container {
+  min-width: 300px;
+
+  border-radius: 3px;
+  margin-right: 60px;
+  margin-bottom: 60px;
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255),
+    0 6px 20px 0 rgba(224, 225, 233, 0.76);
+  .teamcard__header {
+    text-align: center;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 24px;
+      font-weight: 900;
+      margin-top: 30px;
+    }
+  }
+  .teamcard__body {
+    padding: 30px;
+    font-size: 20px;
+    .teamid {
+      font-weight: 700;
+    }
+    .teammembers {
+      font-size: 23px;
+    }
+    .openbugs {
+      color: rgb(201, 70, 70);
+    }
+    .closedbugs {
+      color: rgb(64, 138, 64);
+    }
+    button {
+      margin-top: 20px;
+      margin-left: 60%;
+      border: 1px solid rgb(247, 131, 131);
+      background-color: lighten($color: $danger, $amount: 10);
+      color: $white;
+      text-decoration: none;
+      padding: 1px 20px;
+      text-align: center;
+      border-radius: 3px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      transition: 0.4s;
+    }
+    button:hover {
+      background-color: darken($color: $danger, $amount: 10);
+    }
+  }
+}

@@ -11,11 +11,18 @@ class UserProvider extends Component {
     const user = authService.getCurrentUser();
     this.setState({ user });
   };
-
+  updateUserState = user => {
+    this.setState({ user });
+  };
   render() {
     const { user } = this.state;
     const { children } = this.props;
-    return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+    return (
+      <UserContext.Provider
+        value={{ currentUser: user, updateUserState: this.updateUserState }}>
+        {children}
+      </UserContext.Provider>
+    );
   }
 }
 

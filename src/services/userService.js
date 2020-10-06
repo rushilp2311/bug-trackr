@@ -10,3 +10,7 @@ export function register(user) {
     password: user.password,
   });
 }
+
+export function joinTeam(user) {
+  return http.post(`${apiEndpoint}/addtoteam`, user);
+}

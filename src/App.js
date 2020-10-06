@@ -9,20 +9,20 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import { UserContext } from "./providers/UserProvider";
 
-
 function App() {
-  const user = useContext(UserContext);
+  const context = useContext(UserContext);
+  console.log(context.currentUser);
   return (
     <div className='app'>
-      <Header user={user} />
+      <Header user={context.currentUser} />
       <div className='container'>
         <Switch>
           <Route path='/signup' component={SignUp} />
           <Route path='/signin' component={SignIn} />
           <Route path='/logout' component={Logout} />
           <Route path='/profile' component={Profile} />
-          {!user && <Route path='/' component={Home} />}
-          {user && <Route path='/' component={Dashboard} />}
+          {!context.currentUser && <Route path='/' component={Home} />}
+          {context.currentUser && <Route path='/' component={Dashboard} />}
           <Redirect to='/not-found' />
         </Switch>
       </div>

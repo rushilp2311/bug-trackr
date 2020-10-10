@@ -1,4 +1,5 @@
 import http from "./httpService";
+import * as teamService from "./teamService";
 import { apiUrl } from "../config.json";
 
 const apiEndpoint = apiUrl + "/users";
@@ -11,6 +12,8 @@ export function register(user) {
   });
 }
 
-export function joinTeam(user) {
-  return http.post(`${apiEndpoint}/addtoteam`, user);
+export async function joinTeam(user) {
+  const team = await teamService.findTeam(user.team);
+  if (team) return http.post(`${apiEndpoint}/addtoteam`, user);
+  else return new Error("Team not Found");
 }

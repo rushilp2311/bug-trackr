@@ -1,0 +1,23 @@
+@import "_variables";
+.addteam__container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+
+  h1 {
+    color: darken($color: $danger, $amount: 3);
+  }
+  .addteam__body {
+    margin-top: 4em;
+    text-align: center;
+
+    button {
+      margin-top: 1em;
+      border: 0;
+      padding: 10px 12px;
+      background-color: $main-color;
+      color: $primary-color;
+      border-radius: 2px;
+    }
+  }
+}

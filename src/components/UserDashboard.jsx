@@ -3,13 +3,23 @@ import { FcSearch, FcCheckmark } from "react-icons/fc";
 import { GoIssueOpened, GoComment } from "react-icons/go";
 
 import { RiArrowDropDownFill } from "react-icons/ri";
+import { TeamContext } from "../providers/TeamProvider";
 
 class UserDashboard extends Component {
   render() {
     return (
       <div className='dashboard__container'>
         <div className='dashboard__header'>
-          <div className='team_name'>Your Team Name</div>
+          <div className='team_name'>
+            <TeamContext.Consumer>
+              {currentTeam => (
+                <div>
+                  {currentTeam.currentTeam.name}
+                  {console.log(currentTeam.currentTeam.team)}
+                </div>
+              )}
+            </TeamContext.Consumer>
+          </div>
           <div className='dashboard__controls'>
             <input
               type='text'

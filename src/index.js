@@ -5,11 +5,14 @@ import { BrowserRouter } from "react-router-dom";
 import "./styles/app.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import UserProvider from "./providers/UserProvider";
+import TeamProvider from "./providers/TeamProvider";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <TeamProvider>
+          <App />
+        </TeamProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,

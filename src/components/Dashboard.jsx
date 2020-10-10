@@ -13,7 +13,7 @@ class Dashboard extends Component {
             <AdminDashboard />
           ) : value.currentUser.team === 0 ? (
             <>
-              <h1>You are not in a Team </h1>
+              
               <AddTeam context={value} />
             </>
           ) : (

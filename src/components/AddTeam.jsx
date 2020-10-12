@@ -9,16 +9,22 @@ class AddTeam extends Component {
   };
 
   joinaTeam = async user => {
-    const result = await joinTeam(user);
-    if (result) {
-      this.props.context.updateUserState(user);
-    } else {
-      console.log("Team Not Found");
+    if (this.state.teamid > 0) {
+      const result = await joinTeam(user);
+      if (result) {
+        await this.props.context.updateUserState(result.data);
+      } else {
+        console.log("Team Not Found");
+      }
     }
+    window.location = "/";
   };
   handleChange = ({ currentTarget: input }) => {
-    let teamid = input.value;
-    this.setState({ teamid });
+    console.log(input.value);
+    if (input.value !== null && input.value > 0) {
+      let teamid = input.value;
+      this.setState({ teamid });
+    }
   };
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
   render() {

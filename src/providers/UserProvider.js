@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import authService from "../services/authService";
+import * as authService from "../services/authService";
 
 export const UserContext = createContext({ user: null });
 
@@ -11,8 +11,10 @@ class UserProvider extends Component {
     const user = authService.getCurrentUser();
     this.setState({ user });
   };
-  updateUserState = user => {
+  updateUserState = async user => {
     this.setState({ user });
+    await authService.updateJWTToken(user.email);
+    
   };
   render() {
     const { user } = this.state;

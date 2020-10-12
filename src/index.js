@@ -6,6 +6,7 @@ import "./styles/app.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import UserProvider from "./providers/UserProvider";
 import TeamProvider from "./providers/TeamProvider";
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

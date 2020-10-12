@@ -19,6 +19,12 @@ export function loginWithJwt(jwt) {
 export function logout() {
   localStorage.removeItem(tokenKey);
 }
+export async function updateJWTToken(email) {
+  const { data: jwt } = await http.post(`${apiEndpoint}/updateToken`, {
+    email,
+  });
+  localStorage.setItem(tokenKey, jwt);
+}
 
 export function getCurrentUser() {
   try {

@@ -1,8 +1,9 @@
 import React, { Component, createContext } from "react";
-import authService from "../services/authService";
+import * as authService from "../services/authService";
 import * as teamService from "../services/teamService";
 
-export const TeamContext = createContext({ team: null });
+export const TeamContext = createContext();
+TeamContext.displayName = "TeamContext";
 
 class TeamProvider extends Component {
   state = {
@@ -11,16 +12,20 @@ class TeamProvider extends Component {
 
   componentDidMount = async () => {
     const user = authService.getCurrentUser();
-    const team = await teamService.findTeam(user.team);
+    if (user && user.isAdmin == null && user.team > 0) {
+      const team = await teamService.getCurrentUserTeam(user.team);
+      this.setState({ team });
+    }
+  };
+  updateTeamState = async team => {
     this.setState({ team });
   };
-
   render() {
-    const team = this.state;
+    const { team } = this.state;
     const { children } = this.props;
-    console.log(team.data);
     return (
-      <TeamContext.Provider value={{ currentTeam: team }}>
+      <TeamContext.Provider
+        value={{ currentTeam: team, updateTeamState: this.updateTeamState }}>
         {children}
       </TeamContext.Provider>
     );

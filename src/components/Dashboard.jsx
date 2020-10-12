@@ -1,28 +1,23 @@
-import React, { Component } from "react";
-
+import React, { useContext } from "react";
 import { UserContext } from "../providers/UserProvider";
 import AddTeam from "./AddTeam";
 import AdminDashboard from "./AdminDashboard";
 import UserDashboard from "./UserDashboard";
-class Dashboard extends Component {
-  render() {
-    return (
-      <UserContext.Consumer>
-        {value =>
-          value.currentUser.isAdmin ? (
-            <AdminDashboard />
-          ) : value.currentUser.team === 0 ? (
-            <>
-              
-              <AddTeam context={value} />
-            </>
-          ) : (
-            <UserDashboard />
-          )
-        }
-      </UserContext.Consumer>
-    );
-  }
+function Dashboard() {
+  const user = useContext(UserContext);
+  return (
+    <>
+      {user.currentUser.isAdmin ? (
+        <AdminDashboard />
+      ) : user.currentUser.team === 0 ? (
+        <>
+          <AddTeam context={user} />
+        </>
+      ) : (
+        <UserDashboard />
+      )}
+    </>
+  );
 }
 
 export default Dashboard;

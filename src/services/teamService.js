@@ -7,3 +7,10 @@ const apiEndpoint = apiUrl + "/team";
 export function findTeam(id) {
   return http.get(`${apiEndpoint}/${id}`);
 }
+
+export async function getCurrentUserTeam(teamid) {
+  const res = await findTeam(teamid);
+  return res.data;
+}
+
+export function getAllTeam() {}

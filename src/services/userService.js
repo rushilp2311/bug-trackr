@@ -14,6 +14,7 @@ export function register(user) {
 
 export async function joinTeam(user) {
   const team = await teamService.findTeam(user.team);
-  if (team) return http.post(`${apiEndpoint}/addtoteam`, user);
-  else return new Error("Team not Found");
+  if (team) {
+    return http.post(`${apiEndpoint}/addtoteam`, user);
+  } else return new Error("Team not Found");
 }

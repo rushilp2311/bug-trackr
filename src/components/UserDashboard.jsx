@@ -1,116 +1,113 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { FcSearch, FcCheckmark } from "react-icons/fc";
-import { GoIssueOpened, GoComment } from "react-icons/go";
+import { GoComment, GoIssueOpened } from "react-icons/go";
 
 import { RiArrowDropDownFill } from "react-icons/ri";
+import AddBug from "./AddBug";
 import { TeamContext } from "../providers/TeamProvider";
 
-class UserDashboard extends Component {
-  render() {
-    return (
-      <div className='dashboard__container'>
-        <div className='dashboard__header'>
-          <div className='team_name'>
-            <TeamContext.Consumer>
-              {currentTeam => (
-                <div>
-                  {currentTeam.currentTeam.name}
-                  {console.log(currentTeam.currentTeam.team)}
+function UserDashboard() {
+  const teamContext = useContext(TeamContext);
+  return (
+    <>
+      {teamContext.currentTeam ? (
+        <div className='dashboard__container'>
+          <div className='dashboard__header'>
+            <div className='team_name'>
+              <h2>{teamContext.currentTeam.name}</h2>
+            </div>
+            <div className='dashboard__controls'>
+              <input
+                type='text'
+                name='search'
+                id='bug_search'
+                aria-label='Search all bugs'
+                placeholder='Search all bugs'
+              />
+              <FcSearch className='search_logo' />
+              <AddBug />
+            </div>
+          </div>
+          <div className='dashboard__body'>
+            <div className='dashboard__info'>
+              <div className='dashboard__bugstatus'>
+                <div className='open__bugs'>
+                  <span>
+                    <GoIssueOpened />
+                  </span>{" "}
+                  10 Open
                 </div>
-              )}
-            </TeamContext.Consumer>
-          </div>
-          <div className='dashboard__controls'>
-            <input
-              type='text'
-              name='search'
-              id='bug_search'
-              aria-label='Search all bugs'
-              placeholder='Search all bugs'
-            />
-            <FcSearch className='search_logo' />
-            <button className='dashboard__controls__button'>New Bug</button>
-          </div>
-        </div>
-        <div className='dashboard__body'>
-          <div className='dashboard__info'>
-            <div className='dashboard__bugstatus'>
-              <div className='open__bugs'>
-                <span>
-                  <GoIssueOpened />
-                </span>{" "}
-                10 Open
-              </div>
-              <div className='closed__bugs'>
-                <span>
-                  <FcCheckmark />
-                </span>{" "}
-                11 Closed
-              </div>
-            </div>
-            <div className='dashboard__filters'>
-              <details>
-                <summary role='button'>
-                  Author
+                <div className='closed__bugs'>
                   <span>
-                    <RiArrowDropDownFill />
-                  </span>
-                </summary>
-                <details-menu>
-                  <ul>
-                    <li>Author 1</li>
-                    <li>Author 2</li>
-                    <li>Author 3</li>
-                    <li>Author 4</li>
-                    <li>Author 5</li>
-                  </ul>
-                </details-menu>
-              </details>
-              <details>
-                <summary role='button'>
-                  Sort
-                  <span>
-                    <RiArrowDropDownFill />{" "}
-                  </span>
-                </summary>
-                <details-menu>
-                  <ul>
-                    <li>Newest</li>
-                    <li>Oldest</li>
-                    <li>Most Commented</li>
-                  </ul>
-                </details-menu>
-              </details>
-            </div>
-          </div>
-          <div className='dashboard__bugslist'>
-            <ul>
-              <li className='bugs__list'>
-                <div className='bugs__list__content'>
-                  <div className='bugs__list__info__header'>
+                    <FcCheckmark />
+                  </span>{" "}
+                  11 Closed
+                </div>
+              </div>
+              <div className='dashboard__filters'>
+                <details>
+                  <summary role='button'>
+                    Author
                     <span>
-                      <GoIssueOpened />
+                      <RiArrowDropDownFill />
                     </span>
-                    <div className='bugs__list__headers'>
-                      <p className='header'>
-                        This is the First Bug of Your Application
-                      </p>
-                      <p className='subheader'>
-                        Opened on 4/10/2020 by Rushil Patel
+                  </summary>
+                  <details-menu>
+                    <ul>
+                      <li>Author 1</li>
+                      <li>Author 2</li>
+                      <li>Author 3</li>
+                      <li>Author 4</li>
+                      <li>Author 5</li>
+                    </ul>
+                  </details-menu>
+                </details>
+                <details>
+                  <summary role='button'>
+                    Sort
+                    <span>
+                      <RiArrowDropDownFill />{" "}
+                    </span>
+                  </summary>
+                  <details-menu>
+                    <ul>
+                      <li>Newest</li>
+                      <li>Oldest</li>
+                      <li>Most Commented</li>
+                    </ul>
+                  </details-menu>
+                </details>
+              </div>
+            </div>
+            <div className='dashboard__bugslist'>
+              <ul>
+                {teamContext.currentTeam.bugs.map(bug => (
+                  <li className='bugs__list' key={bug._id}>
+                    <div className='bugs__list__content'>
+                      <div className='bugs__list__info__header'>
+                        <span>
+                          <GoIssueOpened />
+                        </span>
+                        <div className='bugs__list__headers'>
+                          <p className='header'>{bug}</p>
+                          <p className='subheader'>
+                            Opened on 4/10/2020 by Rushil Patel
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='bugs__list__comments'>
+                      <p>
+                        <span>
+                          <GoComment />
+                        </span>{" "}
+                        1
                       </p>
                     </div>
-                  </div>
-                </div>
-                <div className='bugs__list__comments'>
-                  <p>
-                    <span>
-                      <GoComment />
-                    </span>{" "}
-                    1
-                  </p>
-                </div>
-              </li>
-              <li className='bugs__list'>
+                  </li>
+                ))}
+
+                {/* <li className='bugs__list'>
                 <div className='bugs__list__content'>
                   <div className='bugs__list__info__header'>
                     <span>
@@ -184,13 +181,14 @@ class UserDashboard extends Component {
                     1
                   </p>
                 </div>
-              </li>
-            </ul>
+              </li> */}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      ) : null}
+    </>
+  );
 }
 
 export default UserDashboard;

@@ -7,11 +7,10 @@ import Logout from "./components/Logout";
 import Profile from "./components/Profile";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
-import { UserContext } from "./providers/UserProvider";
 
+import { UserContext } from "./providers/UserProvider";
 function App() {
   const context = useContext(UserContext);
-  console.log(context.currentUser);
   return (
     <div className='app'>
       <Header user={context.currentUser} />

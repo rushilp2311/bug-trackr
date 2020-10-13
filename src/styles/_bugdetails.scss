@@ -1,0 +1,91 @@
+@import "_variables";
+
+.bug__details__container {
+  color: $main-color;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-left: 20%;
+  .bug__details__header {
+    .bug__details__goback {
+      width: fit-content;
+      a {
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        color: $main-color;
+      }
+    }
+    hr {
+      margin: 0;
+      width: 75%;
+    }
+    .bug__details__title {
+      margin: 0;
+      margin-top: 10px;
+      width: 75%;
+      p {
+        align-items: center;
+        display: flex;
+        font-size: 44px;
+        justify-content: space-between;
+      }
+      span {
+        background-color: $success;
+        color: $white;
+        padding: 5px 22px;
+        border-radius: 20px;
+        font-size: 20px;
+      }
+    }
+  }
+  .bug__details__description {
+    background-color: rgb(248, 248, 248);
+    padding: 10px 22px;
+    border-radius: 5px;
+    width: 75%;
+    word-wrap: break-all;
+    p {
+      margin: 0;
+    }
+  }
+  .bug__details__comments {
+    margin-top: 100px;
+    .bug__details__comments__add {
+      margin-top: 20px;
+      display: flex;
+      input {
+        display: block;
+        width: 60% !important;
+        padding: 10px 15px;
+        line-height: 20px;
+        overflow: visible;
+        color: #303336;
+        margin-right: 20px;
+      }
+      input:focus {
+        outline-offset: 0px !important;
+        outline: none !important;
+        border: 0.4px solid $main-color;
+        border-radius: 4px;
+        padding: 9px 22.5px;
+      }
+      button {
+        padding: 5px 12px;
+        min-width: 100px;
+        border: 0;
+        background-color: $main-color;
+        border-radius: 4px;
+        color: $white;
+        margin-left: 20px;
+        margin-top: 0px;
+      }
+      button:hover {
+        background-color: lighten($color: $main-color, $amount: 10);
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { GoComment, GoIssueOpened } from "react-icons/go";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import AddBug from "./AddBug";
 import { TeamContext } from "../providers/TeamProvider";
+import { Link } from "react-router-dom";
 
 function UserDashboard() {
   const teamContext = useContext(TeamContext);
@@ -89,7 +90,11 @@ function UserDashboard() {
                           <GoIssueOpened />
                         </span>
                         <div className='bugs__list__headers'>
-                          <p className='header'>{bug.title}</p>
+                          <p className='header'>
+                            <Link to={{ pathname: "/bugdetails", state: bug }}>
+                              {bug.title}
+                            </Link>
+                          </p>
                           <p className='subheader'>
                             Opened on {bug.date.slice(0, 10)} by{" "}
                             {bug.createdBy.name}

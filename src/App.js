@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import BugDetails from "./components/BugDetails";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -20,8 +21,10 @@ function App() {
           <Route path='/signin' component={SignIn} />
           <Route path='/logout' component={Logout} />
           <Route path='/profile' component={Profile} />
+          <Route path='/bugdetails' component={BugDetails} />
           {!context.currentUser && <Route path='/' component={Home} />}
           {context.currentUser && <Route path='/' component={Dashboard} />}
+
           <Redirect to='/not-found' />
         </Switch>
       </div>

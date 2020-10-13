@@ -89,9 +89,10 @@ function UserDashboard() {
                           <GoIssueOpened />
                         </span>
                         <div className='bugs__list__headers'>
-                          <p className='header'>{bug}</p>
+                          <p className='header'>{bug.title}</p>
                           <p className='subheader'>
-                            Opened on 4/10/2020 by Rushil Patel
+                            Opened on {bug.date.slice(0, 10)} by{" "}
+                            {bug.createdBy.name}
                           </p>
                         </div>
                       </div>
@@ -101,87 +102,11 @@ function UserDashboard() {
                         <span>
                           <GoComment />
                         </span>{" "}
-                        1
+                        {bug.comments.length}
                       </p>
                     </div>
                   </li>
                 ))}
-
-                {/* <li className='bugs__list'>
-                <div className='bugs__list__content'>
-                  <div className='bugs__list__info__header'>
-                    <span>
-                      <GoIssueOpened />
-                    </span>
-                    <div className='bugs__list__headers'>
-                      <p className='header'>
-                        This is the Second Bug of Your Application
-                      </p>
-                      <p className='subheader'>
-                        Opened on 4/10/2020 by Krutarth Patel
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className='bugs__list__comments'>
-                  <p>
-                    <span>
-                      <GoComment />
-                    </span>{" "}
-                    1
-                  </p>
-                </div>
-              </li>
-              <li className='bugs__list'>
-                <div className='bugs__list__content'>
-                  <div className='bugs__list__info__header'>
-                    <span>
-                      <GoIssueOpened />
-                    </span>
-                    <div className='bugs__list__headers'>
-                      <p className='header'>
-                        This is the Third Bug of Your Application
-                      </p>
-                      <p className='subheader'>
-                        Opened on 4/10/2020 by Parth Patel
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className='bugs__list__comments'>
-                  <p>
-                    <span>
-                      <GoComment />
-                    </span>{" "}
-                    1
-                  </p>
-                </div>
-              </li>
-              <li className='bugs__list'>
-                <div className='bugs__list__content'>
-                  <div className='bugs__list__info__header'>
-                    <span>
-                      <GoIssueOpened />
-                    </span>
-                    <div className='bugs__list__headers'>
-                      <p className='header'>
-                        This is the Fourth Bug of Your Application
-                      </p>
-                      <p className='subheader'>
-                        Opened on 4/10/2020 by Jeel Patel
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className='bugs__list__comments'>
-                  <p>
-                    <span>
-                      <GoComment />
-                    </span>{" "}
-                    1
-                  </p>
-                </div>
-              </li> */}
               </ul>
             </div>
           </div>

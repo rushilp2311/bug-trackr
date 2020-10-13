@@ -1,23 +1,37 @@
 import React, { Component } from "react";
 import Modal from "./common/Modal";
+import * as teamService from "../services/teamService";
+import * as authService from "../services/authService";
+
 class AddBug extends Component {
   state = {
     showModal: false,
+    data: {},
   };
 
-  // joinaTeam = async user => {
-  //   const result = await joinTeam(user);
-  //   if (result) {
-  //     this.props.context.updateUserState(user);
-  //   } else {
-  //     console.log("Team Not Found");
-  //   }
-  // };
-  // handleChange = ({ currentTarget: input }) => {
-  //   let teamid = input.value;
-  //   this.setState({ teamid });
-  // };
-  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+  handleSubmit = async e => {
+    e.preventDefault();
+    const user = authService.getCurrentUser();
+    const bug = {
+      email: user.email,
+      teamid: user.team,
+      title: this.state.data.title,
+      description: this.state.data.description,
+      isOpen: true,
+    };
+    await teamService.addBug(bug);
+  };
+  handleChange = ({ currentTarget: input }) => {
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
+    this.setState({ data });
+  };
+  toggleModal = () => {
+    if (this.state.showModal === true) {
+      window.location = "/";
+    }
+    this.setState({ showModal: !this.state.showModal });
+  };
   render() {
     return (
       <>
@@ -38,6 +52,7 @@ class AddBug extends Component {
                     <label>Enter the Title</label>
                     <input
                       type='text'
+                      name='title'
                       onChange={this.handleChange}
                       placeholder='Add a title of your issue'
                     />
@@ -46,12 +61,13 @@ class AddBug extends Component {
                     <label>Enter Description of Bug</label>
                     <textarea
                       style={{ height: "100px" }}
+                      name='description'
                       onChange={this.handleChange}
                       placeholder='Give Description'
                     />
                   </div>
                   <div className='btn-group'>
-                    <button onClick={this.toggleModal}>Submit New Bug</button>
+                    <button onClick={this.handleSubmit}>Submit New Bug</button>
                     <button onClick={this.toggleModal} className='close-btn'>
                       Close
                     </button>

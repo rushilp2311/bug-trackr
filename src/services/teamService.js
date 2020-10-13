@@ -13,4 +13,11 @@ export async function getCurrentUserTeam(teamid) {
   return res.data;
 }
 
+export async function addBug(bug) {
+  const result = await http.post(`${apiUrl}/bug`, bug);
+  if (result.status === 200) {
+    window.location = "/";
+  }
+}
+
 export function getAllTeam() {}

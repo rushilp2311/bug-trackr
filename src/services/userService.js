@@ -1,6 +1,7 @@
 import http from "./httpService";
 import * as teamService from "./teamService";
 import { apiUrl } from "../config.json";
+import authService from "./authService";
 
 const apiEndpoint = apiUrl + "/users";
 
@@ -17,4 +18,12 @@ export async function joinTeam(user) {
   if (team) {
     return http.post(`${apiEndpoint}/addtoteam`, user);
   } else return new Error("Team not Found");
+}
+
+export async function getAllUsersByTeamId() {
+  const team = authService.getCurrentUser().team;
+  const allUsersList = await http.get(
+    `${apiEndpoint}/getallusersbyteamid/${team}`
+  );
+  return allUsersList;
 }

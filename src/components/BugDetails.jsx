@@ -27,6 +27,9 @@ class BugDetails extends Component {
                 {bug.title} <span>Closed</span>
               </p>
             )}
+            <h6>
+              Created by {bug.createdBy.name} on {bug.date.substring(0, 10)}
+            </h6>
           </div>
         </div>
         <div className='bug__details__description'>

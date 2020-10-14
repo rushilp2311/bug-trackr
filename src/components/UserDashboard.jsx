@@ -15,7 +15,11 @@ function UserDashboard() {
         <div className='dashboard__container'>
           <div className='dashboard__header'>
             <div className='team_name'>
-              <h2>{teamContext.currentTeam.name}</h2>
+              <h2>
+                <Link to='/teamdetails' style={{ color: "#001233" }}>
+                  {teamContext.currentTeam.name}
+                </Link>
+              </h2>
             </div>
             <div className='dashboard__controls'>
               <input
@@ -91,7 +95,9 @@ function UserDashboard() {
                         </span>
                         <div className='bugs__list__headers'>
                           <p className='header'>
-                            <Link to={{ pathname: "/bugdetails", state: bug }}>
+                            <Link
+                              to={{ pathname: "/bugdetails", state: bug }}
+                              style={{ color: "#001233" }}>
                               {bug.title}
                             </Link>
                           </p>

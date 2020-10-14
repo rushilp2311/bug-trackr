@@ -8,6 +8,7 @@ import Logout from "./components/Logout";
 import Profile from "./components/Profile";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import TeamDetails from "./components/TeamDeatils";
 
 import { UserContext } from "./providers/UserProvider";
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/logout' component={Logout} />
           <Route path='/profile' component={Profile} />
           <Route path='/bugdetails' component={BugDetails} />
+          <Route path='/teamdetails' component={TeamDetails} />
           {!context.currentUser && <Route path='/' component={Home} />}
           {context.currentUser && <Route path='/' component={Dashboard} />}
 

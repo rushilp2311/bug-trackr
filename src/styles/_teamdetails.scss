@@ -1,0 +1,58 @@
+@import "_variables";
+
+.team__details__container {
+  .team__details__header {
+    p {
+      font-size: 45px;
+    }
+  }
+  .team__info {
+    text-align: center;
+    margin-top: 30px;
+    p {
+      font-size: 18px;
+      color: $success;
+      font-weight: 900;
+    }
+  }
+  .team__details__body {
+    margin-top: 80px;
+    background-color: rgb(243, 243, 243);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid rgb(199, 197, 197);
+    .user__info {
+      padding: 10px 12px;
+
+      border-bottom: 1px solid rgb(199, 197, 197);
+      p {
+        font-size: 24px;
+        margin-bottom: 2px;
+        span {
+          font-size: 16px;
+        }
+      }
+      h6 {
+        font-size: 20px;
+        color: lighten($color: $main-color, $amount: 20);
+      }
+    }
+    .user__info:hover {
+      background-color: rgb(199, 197, 197);
+    }
+  }
+  .back__button {
+    margin-top: 30px;
+    text-align: center;
+    button {
+      border: 0;
+      border-radius: 5px;
+      padding: 10px 22px;
+      color: $primary-color;
+      background-color: $main-color;
+    }
+    button:hover {
+      background-color: lighten($color: $main-color, $amount: 10);
+    }
+  }
+}

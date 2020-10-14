@@ -27,11 +27,17 @@
       margin: 0;
       margin-top: 10px;
       width: 75%;
+      margin-bottom: 50px;
+      h6 {
+        color: gray;
+        margin-top: 5px;
+      }
       p {
         align-items: center;
         display: flex;
         font-size: 44px;
         justify-content: space-between;
+        margin-bottom: 0;
       }
       span {
         background-color: $success;
@@ -43,7 +49,7 @@
     }
   }
   .bug__details__description {
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(232, 238, 238);
     padding: 10px 22px;
     border-radius: 5px;
     width: 75%;
@@ -53,7 +59,13 @@
     }
   }
   .bug__details__comments {
-    margin-top: 100px;
+    margin-top: 140px;
+    background-color: rgb(248, 248, 248);
+    width: 75%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border:1px solid rgb(201, 199, 199);
+    padding: 10px 22px;
     .bug__details__comments__add {
       margin-top: 20px;
       display: flex;

@@ -10,7 +10,6 @@ class TeamDetails extends Component {
   };
   async componentDidMount() {
     const userList = await userService.getAllUsersByTeamId();
-    console.log(userList.data);
     const currentUser = authService.getCurrentUser();
     this.setState({ currentUser });
     this.setState({ usersList: userList.data });

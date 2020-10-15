@@ -17,7 +17,7 @@ class TeamProvider extends Component {
       this.setState({ team });
     }
   };
-  updateTeamState = async team => {
+  updateTeamState = team => {
     this.setState({ team });
   };
   render() {

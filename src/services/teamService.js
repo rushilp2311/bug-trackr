@@ -15,9 +15,7 @@ export async function getCurrentUserTeam(teamid) {
 
 export async function addBug(bug) {
   const result = await http.post(`${apiUrl}/bug`, bug);
-  if (result.status === 200) {
-    window.location = "/";
-  }
+  return result;
 }
 
 export function getAllTeam() {}

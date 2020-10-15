@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 class BugDetails extends Component {
   render() {
     const bug = this.props.location.state;
+
     return (
       <div className='bug__details__container'>
         <div className='bug__details__header'>
@@ -44,6 +45,13 @@ class BugDetails extends Component {
           <div className='bug__details__comments__add'>
             <input type='text' placeholder='Leave a Comment' />
             <button> Add Comment </button>
+          </div>
+          <div className='bug__details__comments__list'>
+            <ul>
+              {bug.comments.map(comment => (
+                <li key={comment._id}>{comment.comment}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

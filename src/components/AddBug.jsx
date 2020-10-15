@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Modal from "./common/Modal";
+import { TeamContext } from "../providers/TeamProvider";
 import * as teamService from "../services/teamService";
 import * as authService from "../services/authService";
 
 class AddBug extends Component {
+  static contextType = TeamContext;
   state = {
     showModal: false,
     data: {},
@@ -19,7 +21,11 @@ class AddBug extends Component {
       description: this.state.data.description,
       isOpen: true,
     };
-    await teamService.addBug(bug);
+    const team = await teamService.addBug(bug);
+    if (team != null) {
+      this.context.updateTeamState(team.data);
+    }
+    this.toggleModal();
   };
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
@@ -27,9 +33,6 @@ class AddBug extends Component {
     this.setState({ data });
   };
   toggleModal = () => {
-    if (this.state.showModal === true) {
-      window.location = "/";
-    }
     this.setState({ showModal: !this.state.showModal });
   };
   render() {

@@ -33,15 +33,18 @@ class BugDetails extends Component {
       bugid: currentbug._id,
     };
     const current = { ...this.state.bug };
+
     current.comments.push({
       comment: this.state.data.comment,
       createdBy: { _id: user._id, name: user.name },
     });
-    this.setState({ bug: current });
+
     const team = await teamService.addComment(comment);
     if (team != null) {
-      const bug = team.data.bugs;
-      this.setState({ bug: bug[0] });
+      const bugs = team.data.bugs;
+      const bug = bugs.find(b => b._id === currentbug._id);
+
+      this.setState({ bug });
       this.context.updateTeamState(team.data);
     }
   };
@@ -105,7 +108,15 @@ class BugDetails extends Component {
             {bug.comments ? (
               <ul>
                 {bug.comments.map(comment => {
-                  return <li key={comment._id}>{comment.comment}</li>;
+                  return (
+                    <li key={comment._id}>
+                      <div className='comment__title'>{comment.comment}</div>
+                      <div className='commented__by'>
+                        Commented By {comment.createdBy.name} on{" "}
+                        {comment.date.substring(0, 10)}
+                      </div>
+                    </li>
+                  );
                 })}
               </ul>
             ) : null}

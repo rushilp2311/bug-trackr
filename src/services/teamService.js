@@ -20,7 +20,6 @@ export async function addBug(bug) {
 
 export async function addComment(comment) {
   const result = await http.post(`${apiUrl}/comment`, comment);
-  console.log(result);
   return result;
 }
 

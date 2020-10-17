@@ -64,10 +64,14 @@
     width: 75%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border:1px solid rgb(201, 199, 199);
-    padding: 10px 22px;
+    border: 1px solid rgb(201, 199, 199);
+
+    h3 {
+      padding: 10px 22px;
+    }
     .bug__details__comments__add {
       margin-top: 20px;
+      padding: 10px 22px;
       display: flex;
       input {
         display: block;
@@ -97,6 +101,23 @@
       }
       button:hover {
         background-color: lighten($color: $main-color, $amount: 10);
+      }
+    }
+    .bug__details__comments__list {
+      margin-top: 30px;
+      li {
+        list-style-type: none;
+        padding: 10px 22px;
+        border-top: 1px solid rgb(201, 199, 199);
+        // border-bottom: 1px solid rgb(201, 199, 199);
+        .comment__title {
+          font-size: 24px;
+        }
+        .commented__by {
+          margin-top: 10px;
+          color: rgb(83, 83, 83);
+          font-size: 13px;
+        }
       }
     }
   }

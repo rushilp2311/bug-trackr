@@ -18,4 +18,10 @@ export async function addBug(bug) {
   return result;
 }
 
+export async function addComment(comment) {
+  const result = await http.post(`${apiUrl}/comment`, comment);
+  console.log(result);
+  return result;
+}
+
 export function getAllTeam() {}

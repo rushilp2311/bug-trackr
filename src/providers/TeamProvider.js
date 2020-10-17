@@ -20,12 +20,19 @@ class TeamProvider extends Component {
   updateTeamState = team => {
     this.setState({ team });
   };
+  getCurrentTeam = () => {
+    return this.state.team;
+  };
   render() {
     const { team } = this.state;
     const { children } = this.props;
     return (
       <TeamContext.Provider
-        value={{ currentTeam: team, updateTeamState: this.updateTeamState }}>
+        value={{
+          currentTeam: team,
+          updateTeamState: this.updateTeamState,
+          getCurrentTeam: this.getCurrentTeam,
+        }}>
         {children}
       </TeamContext.Provider>
     );

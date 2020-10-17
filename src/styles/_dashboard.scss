@@ -16,17 +16,20 @@
         input {
           display: block;
           width: 100% !important;
-          padding: 5px 25px;
+          padding: 4px 32.5px;
+          height: fit-content;
           line-height: 20px;
           overflow: visible;
           color: #303336;
+          border: 0;
+          border: 0.4px solid rgb(218, 218, 218);
+          border-radius: 4px;
           margin-right: 20px;
         }
         input:focus {
           outline-offset: 0px !important;
-          outline: none !important;
           border: 0.4px solid $main-color;
-          border-radius: 4px;
+          outline: none !important;
           padding: 4px 32.5px;
         }
         .search_logo {
@@ -41,7 +44,8 @@
         }
         .dashboard__controls__button {
           padding: 5px 12px;
-          min-width: 100px;
+          width: 200px;
+          height: fit-content;
           border: 0;
           background-color: $success;
           border-radius: 4px;
@@ -84,9 +88,15 @@
           justify-content: flex-end;
           details {
             margin-right: 25px;
+            summary {
+              list-style: none;
+            }
+            summary::-webkit-details-marker {
+              display: none;
+            }
 
             summary {
-              display: inline-block;
+              list-style-type: none;
               padding: 0;
               cursor: pointer;
               span {

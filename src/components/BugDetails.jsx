@@ -3,6 +3,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { TeamContext } from "../providers/TeamProvider";
 import * as teamService from "../services/teamService";
 import * as authService from "../services/authService";
+import DeleteBug from "./DeleteBug";
 
 class BugDetails extends Component {
   static contextType = TeamContext;
@@ -57,6 +58,8 @@ class BugDetails extends Component {
 
   render() {
     const { bug } = this.state;
+    const user = authService.getCurrentUser();
+
     return (
       <div className='bug__details__container'>
         <div className='bug__details__header'>
@@ -90,6 +93,15 @@ class BugDetails extends Component {
           <h3>Description</h3>
           <hr />
           <p>{bug.description}</p>
+        </div>
+
+        <div className='bug__details__buttons'>
+          {bug.createdBy ? (
+            bug.createdBy.id === user._id ? (
+              <DeleteBug bug={bug} />
+            ) : null
+          ) : null}
+          <button className="close_btn">Close this bug</button>
         </div>
         <div className='bug__details__comments'>
           <div className='bug__details__comments__title'>

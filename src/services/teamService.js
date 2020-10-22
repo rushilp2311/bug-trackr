@@ -19,18 +19,29 @@ export async function addBug(bug) {
 }
 
 export async function addComment(comment) {
-  console.log("Add comment", comment);
   const result = await http.post(`${apiUrl}/comment`, comment);
   return result;
 }
 
-export async function deleteBug(bug) { 
+export async function deleteBug(bug) {
   const result = await http.delete(`${apiUrl}/bug`, {
-   headers: {
-      'content-type': 'application/json;charset=utf-8',
+    headers: {
+      "content-type": "application/json;charset=utf-8",
       bugid: bug.bugid,
-      teamid: bug.teamid
-    }
+      teamid: bug.teamid,
+    },
+  });
+  return result;
+}
+
+export async function deleteComment(comment) {
+  const result = await http.delete(`${apiUrl}/comment`, {
+    headers: {
+      "content-type": "application/json;charset=utf-8",
+      bugid: comment.bugid,
+      teamid: comment.teamid,
+      commentid: comment.commentid,
+    },
   });
   return result;
 }

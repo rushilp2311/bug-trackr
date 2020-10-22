@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BiArrowBack } from "react-icons/bi";
+import { TiDeleteOutline } from "react-icons/ti";
 import { TeamContext } from "../providers/TeamProvider";
 import * as teamService from "../services/teamService";
 import * as authService from "../services/authService";
@@ -18,35 +19,38 @@ class BugDetails extends Component {
     const team = await teamService.getCurrentUserTeam(
       authService.getCurrentUser().team
     );
-    const bug = team.bugs.find(b => b._id === currentbug._id);
+    const bug = team.bugs.find((b) => b._id === currentbug._id);
 
     this.setState({ bug });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const user = authService.getCurrentUser();
-    const currentbug = this.props.location.state;
-    const comment = {
-      comment: this.state.data.comment,
-      email: user.email,
-      teamid: user.team,
-      bugid: currentbug._id,
-    };
-    const current = { ...this.state.bug };
+    if (this.state.data.comment) {
+      const user = authService.getCurrentUser();
+      const currentbug = this.props.location.state;
+      const comment = {
+        comment: this.state.data.comment,
+        email: user.email,
+        teamid: user.team,
+        bugid: currentbug._id,
+      };
+      const current = { ...this.state.bug };
 
-    current.comments.push({
-      comment: this.state.data.comment,
-      createdBy: { _id: user._id, name: user.name },
-    });
+      current.comments.push({
+        comment: this.state.data.comment,
+        createdBy: { _id: user._id, name: user.name },
+      });
 
-    const team = await teamService.addComment(comment);
-    if (team != null) {
-      const bugs = team.data.bugs;
-      const bug = bugs.find(b => b._id === currentbug._id);
+      const team = await teamService.addComment(comment);
+      if (team != null) {
+        const bugs = team.data.bugs;
+        const bug = bugs.find((b) => b._id === currentbug._id);
 
-      this.setState({ bug });
-      this.context.updateTeamState(team.data);
+        this.setState({ bug });
+        this.context.updateTeamState(team.data);
+      }
+      document.getElementById("comment").value = "";
     }
   };
 
@@ -56,15 +60,33 @@ class BugDetails extends Component {
     this.setState({ data });
   };
 
+  handleDeleteComment = async (commentid) => {
+    const user = authService.getCurrentUser();
+    const currentbug = this.props.location.state;
+    const deleteComment = {
+      teamid: user.team,
+      bugid: currentbug._id,
+      commentid: commentid,
+    };
+    const team = await teamService.deleteComment(deleteComment);
+    if (team != null) {
+      const bugs = team.data.bugs;
+      const bug = bugs.find((b) => b._id === currentbug._id);
+
+      this.setState({ bug });
+      this.context.updateTeamState(team.data);
+    }
+  };
+
   render() {
     const { bug } = this.state;
     const user = authService.getCurrentUser();
 
     return (
-      <div className='bug__details__container'>
-        <div className='bug__details__header'>
-          <div className='bug__details__goback'>
-            <a href='/'>
+      <div className="bug__details__container">
+        <div className="bug__details__header">
+          <div className="bug__details__goback">
+            <a href="/">
               <span>
                 <BiArrowBack />
               </span>
@@ -72,7 +94,7 @@ class BugDetails extends Component {
             </a>
           </div>
           <hr />
-          <div className='bug__details__title'>
+          <div className="bug__details__title">
             {bug.isOpen ? (
               <p>
                 {bug.title} <span>Open</span>
@@ -89,13 +111,13 @@ class BugDetails extends Component {
             ) : null}
           </div>
         </div>
-        <div className='bug__details__description'>
+        <div className="bug__details__description">
           <h3>Description</h3>
           <hr />
           <p>{bug.description}</p>
         </div>
 
-        <div className='bug__details__buttons'>
+        <div className="bug__details__buttons">
           {bug.createdBy ? (
             bug.createdBy.id === user._id ? (
               <DeleteBug bug={bug} />
@@ -103,27 +125,40 @@ class BugDetails extends Component {
           ) : null}
           <button className="close_btn">Close this bug</button>
         </div>
-        <div className='bug__details__comments'>
-          <div className='bug__details__comments__title'>
+        <div className="bug__details__comments">
+          <div className="bug__details__comments__title">
             <h3>Comment Section</h3>
           </div>
-          <div className='bug__details__comments__add'>
+          <div className="bug__details__comments__add">
             <input
-              type='text'
-              name='comment'
+              type="text"
+              name="comment"
+              id="comment"
               onChange={this.handleChange}
-              placeholder='Leave a Comment'
+              placeholder="Leave a Comment"
             />
             <button onClick={this.handleSubmit}> Add Comment </button>
           </div>
-          <div className='bug__details__comments__list'>
+          <div className="bug__details__comments__list">
             {bug.comments ? (
               <ul>
-                {bug.comments.map(comment => {
+                {bug.comments.map((comment) => {
                   return (
                     <li key={comment._id}>
-                      <div className='comment__title'>{comment.comment}</div>
-                      <div className='commented__by'>
+                      <div className="comment__title">
+                        {comment.comment}{" "}
+                        {authService.getCurrentUser()._id ===
+                        comment.createdBy.id ? (
+                          <span
+                            onClick={() =>
+                              this.handleDeleteComment(comment._id)
+                            }
+                          >
+                            <TiDeleteOutline />
+                          </span>
+                        ) : null}
+                      </div>
+                      <div className="commented__by">
                         Commented By {comment.createdBy.name} on{" "}
                         {comment.date.substring(0, 10)}
                       </div>

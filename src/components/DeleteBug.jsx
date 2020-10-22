@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import authService from "../services/authService";
 import Modal from "./common/Modal";
+import { MdDelete } from "react-icons/md";
 import { TeamContext } from "../providers/TeamProvider";
 import * as teamService from "../services/teamService";
 
@@ -33,13 +34,29 @@ class DeleteBug extends Component {
   render() {
     return (
       <>
-        <button onClick={this.toggleModal}>Delete this bug</button>
+        <button onClick={this.toggleModal}>
+          <span>
+            <MdDelete />
+          </span>{" "}
+          {"  "}
+          Delete this bug
+        </button>
         {this.state.showModal ? (
           <Modal>
             <div className="delete__modal">
               <p>Are you sure you want to delete this bug?</p>
-              <button onClick={this.handleClick} className="delete__modal__deletebtn">Delete This Bug</button>
-              <button onClick={this.toggleModal} className="delete__modal__closebtn">Close</button>
+              <button
+                onClick={this.handleClick}
+                className="delete__modal__deletebtn"
+              >
+                Delete This Bug
+              </button>
+              <button
+                onClick={this.toggleModal}
+                className="delete__modal__closebtn"
+              >
+                Close
+              </button>
             </div>
           </Modal>
         ) : null}

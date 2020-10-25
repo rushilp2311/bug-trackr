@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 
 .bug__details__container {
   color: $main-color;
@@ -76,6 +76,17 @@
     }
     .close_btn:hover {
       background-color: lighten($color: $main-color, $amount: 10);
+    }
+    .reopen_btn {
+      border: 1px solid $main-color;
+      color: $main-color;
+      background-color: white;
+      transition-duration: 0.3s;
+    }
+    .reopen_btn:hover {
+      border: 1px solid $main-color;
+      color: $white;
+      background-color: $main-color;
     }
   }
   .bug__details__comments {

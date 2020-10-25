@@ -58,72 +58,86 @@
     }
     .dashboard__body {
       margin-top: 20px;
-      .dashboard__info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        background-color: rgb(233, 233, 235);
-        border: 1px solid #e1e4e8;
-        border-left-width: 1px;
-        border-right-width: 1px;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-        padding: 16px;
-        padding-bottom: 0;
-        .dashboard__bugstatus {
+      .react-tabs {
+        .dashboard__info {
           display: flex;
           flex-direction: row;
-          width: 50%;
-          .open__bugs {
-            width: auto;
-            margin-right: 25px;
-          }
-          .closed__bugs {
-            width: auto;
-          }
-          .react-tabs__tab-list {
-            margin: 0 !important;
-            border: 0;
-            .react-tabs__tab--selected {
-              background-color: rgb(233, 233, 235);
-              border: 0;
-              border-bottom: 3px solid $main-color;
-            }
-          }
-        }
-        .dashboard__filters {
-          display: flex;
-          flex-direction: row;
-          width: 50%;
-          justify-content: flex-end;
-          details {
-            margin-right: 25px;
-            summary {
-              list-style: none;
-            }
-            summary::-webkit-details-marker {
-              display: none;
-            }
-
-            summary {
-              list-style-type: none;
-              padding: 0;
-              cursor: pointer;
+          justify-content: space-between;
+          background-color: rgb(233, 233, 235);
+          border: 1px solid #e1e4e8;
+          border-left-width: 1px;
+          border-right-width: 1px;
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
+          padding: 16px;
+          padding-bottom: 0;
+          .dashboard__bugstatus {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            .open__bugs {
+              width: 80px;
               span {
-                font-size: 18px;
+                color: $danger;
+                margin-right: 3px;
+                svg {
+                  margin-bottom: 2px;
+                }
               }
             }
-            details-menu {
-              border-radius: 5px;
-              position: absolute;
-              z-index: 99;
-              overflow: hidden;
-              top: auto;
-              bottom: auto;
-              left: auto;
-              background-color: $white;
-              animation-duration: 0.12s;
-              animation: cubic-bezier(0, 0.1, 0.1, 1) backwards;
+            .closed__bugs {
+              width: auto;
+              span {
+                margin-right: 3px;
+                svg {
+                  margin-bottom: 2px;
+                }
+              }
+            }
+            .react-tabs__tab-list {
+              margin: 0 !important;
+              border: 0;
+              .react-tabs__tab--selected {
+                background-color: rgb(233, 233, 235);
+                border: 0;
+                border-bottom: 3px solid $main-color;
+              }
+            }
+          }
+          .dashboard__filters {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            justify-content: flex-end;
+            details {
+              margin-right: 25px;
+              summary {
+                list-style: none;
+              }
+              summary::-webkit-details-marker {
+                display: none;
+              }
+
+              summary {
+                list-style-type: none;
+                padding: 0;
+                cursor: pointer;
+                span {
+                  font-size: 18px;
+                }
+              }
+              details-menu {
+                border-radius: 5px;
+                position: absolute;
+                z-index: 99;
+                overflow: hidden;
+                top: auto;
+                bottom: auto;
+                left: auto;
+                background-color: $white;
+                animation-duration: 0.12s;
+                animation: cubic-bezier(0, 0.1, 0.1, 1) backwards;
+              }
             }
           }
         }

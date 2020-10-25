@@ -8,13 +8,19 @@ import DeleteBug from './DeleteBug';
 
 class BugDetails extends Component {
   static contextType = TeamContext;
-  state = {
-    bug: {},
-    data: {},
-  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      bug: {},
+      data: {},
+    };
+  }
 
   componentDidMount = async () => {
-    const currentbug = this.props.location.state;
+    const { location } = this.props;
+    const currentbug = location.state;
 
     const team = await teamService.getCurrentUserTeam(
       authService.getCurrentUser().team
@@ -26,43 +32,50 @@ class BugDetails extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    if (this.state.data.comment) {
+    const { data, bug } = this.state;
+    const { location } = this.props;
+    const { comment } = data;
+    const { updateTeamState } = this.context;
+    if (comment) {
       const user = authService.getCurrentUser();
-      const currentbug = this.props.location.state;
-      const comment = {
-        comment: this.state.data.comment,
+      const currentbug = location.state;
+      const currentcomment = {
+        comment: comment,
         email: user.email,
         teamid: user.team,
         bugid: currentbug._id,
       };
-      const current = { ...this.state.bug };
+      const current = { ...bug };
 
       current.comments.push({
-        comment: this.state.data.comment,
+        comment: comment,
         createdBy: { _id: user._id, name: user.name },
       });
 
-      const team = await teamService.addComment(comment);
+      const team = await teamService.addComment(currentcomment);
       if (team != null) {
-        const bugs = team.data.bugs;
-        const bug = bugs.find((b) => b._id === currentbug._id);
+        const { bugs } = team.data;
+        const currentBug = bugs.find((b) => b._id === currentbug._id);
 
-        this.setState({ bug });
-        this.context.updateTeamState(team.data);
+        this.setState({ bug: currentBug });
+        updateTeamState(team.data);
       }
       document.getElementById('comment').value = '';
     }
   };
 
   handleChange = ({ currentTarget: input }) => {
-    const data = { ...this.state.data };
-    data[input.name] = input.value;
-    this.setState({ data });
+    const { data } = this.state;
+    const currentData = { ...data };
+    currentData[input.name] = input.value;
+    this.setState({ data: currentData });
   };
 
   handleDeleteComment = async (commentid) => {
     const user = authService.getCurrentUser();
-    const currentbug = this.props.location.state;
+    const { location } = this.props;
+    const { updateTeamState } = this.context;
+    const currentbug = location.state;
     const deleteComment = {
       teamid: user.team,
       bugid: currentbug._id,
@@ -70,18 +83,20 @@ class BugDetails extends Component {
     };
     const team = await teamService.deleteComment(deleteComment);
     if (team != null) {
-      const bugs = team.data.bugs;
+      const { bugs } = team.data;
       const bug = bugs.find((b) => b._id === currentbug._id);
 
       this.setState({ bug });
-      this.context.updateTeamState(team.data);
+      updateTeamState(team.data);
     }
   };
 
   handleChangeBugStatus = async (e) => {
     e.preventDefault();
     const user = authService.getCurrentUser();
-    const currentbug = this.props.location.state;
+    const { location } = this.props;
+    const { updateTeamState } = this.context;
+    const currentbug = location.state;
 
     const changeBug = {
       teamid: user.team,
@@ -89,11 +104,11 @@ class BugDetails extends Component {
     };
     const team = await teamService.updateBugStatus(changeBug);
     if (team != null) {
-      const bugs = team.data.bugs;
+      const { bugs } = team.data;
       const bug = bugs.find((b) => b._id === currentbug._id);
 
       this.setState({ bug });
-      this.context.updateTeamState(team.data);
+      updateTeamState(team.data);
     }
   };
 
@@ -147,7 +162,11 @@ class BugDetails extends Component {
             <button className="close_btn" onClick={this.handleChangeBugStatus}>
               Close this bug
             </button>
-          ) : null}
+          ) : (
+            <button className="reopen_btn" onClick={this.handleChangeBugStatus}>
+              Re-open this Bug
+            </button>
+          )}
         </div>
         <div className="bug__details__comments">
           <div className="bug__details__comments__title">

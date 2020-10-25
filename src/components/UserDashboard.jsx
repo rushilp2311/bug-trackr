@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { FcSearch, FcCheckmark } from 'react-icons/fc';
 import { GoComment, GoIssueOpened } from 'react-icons/go';
-
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import { RiArrowDropDownFill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import AddBug from './AddBug';
 import { TeamContext } from '../providers/TeamProvider';
-import { Link } from 'react-router-dom';
 
 function UserDashboard() {
   const teamContext = useContext(TeamContext);
@@ -44,95 +45,151 @@ function UserDashboard() {
             </div>
           </div>
           <div className="dashboard__body">
-            <div className="dashboard__info">
-              <div className="dashboard__bugstatus">
-                <div className="open__bugs">
-                  <span>
-                    <GoIssueOpened />
-                  </span>{' '}
-                  {openBugsCount} Open
+            <Tabs>
+              <div className="dashboard__info">
+                <div className="dashboard__bugstatus">
+                  <TabList>
+                    <Tab>
+                      <span className="open__bugs">
+                        <span>
+                          <GoIssueOpened />
+                        </span>{' '}
+                        {openBugsCount} Open
+                      </span>
+                    </Tab>
+                    <Tab>
+                      <span className="closed__bugs">
+                        <span>
+                          <FcCheckmark />
+                        </span>{' '}
+                        {closeBugsCount} Closed
+                      </span>
+                    </Tab>
+                  </TabList>
                 </div>
-                <div className="closed__bugs">
-                  <span>
-                    <FcCheckmark />
-                  </span>{' '}
-                  {closeBugsCount} Closed
+                <div className="dashboard__filters">
+                  <details>
+                    <summary role="button">
+                      Author
+                      <span>
+                        <RiArrowDropDownFill />
+                      </span>
+                    </summary>
+                    <details-menu>
+                      <ul>
+                        <li>Author 1</li>
+                        <li>Author 2</li>
+                        <li>Author 3</li>
+                        <li>Author 4</li>
+                        <li>Author 5</li>
+                      </ul>
+                    </details-menu>
+                  </details>
+                  <details>
+                    <summary role="button">
+                      Sort
+                      <span>
+                        <RiArrowDropDownFill />{' '}
+                      </span>
+                    </summary>
+                    <details-menu>
+                      <ul>
+                        <li>Newest</li>
+                        <li>Oldest</li>
+                        <li>Most Commented</li>
+                      </ul>
+                    </details-menu>
+                  </details>
                 </div>
               </div>
-              <div className="dashboard__filters">
-                <details>
-                  <summary role="button">
-                    Author
-                    <span>
-                      <RiArrowDropDownFill />
-                    </span>
-                  </summary>
-                  <details-menu>
-                    <ul>
-                      <li>Author 1</li>
-                      <li>Author 2</li>
-                      <li>Author 3</li>
-                      <li>Author 4</li>
-                      <li>Author 5</li>
-                    </ul>
-                  </details-menu>
-                </details>
-                <details>
-                  <summary role="button">
-                    Sort
-                    <span>
-                      <RiArrowDropDownFill />{' '}
-                    </span>
-                  </summary>
-                  <details-menu>
-                    <ul>
-                      <li>Newest</li>
-                      <li>Oldest</li>
-                      <li>Most Commented</li>
-                    </ul>
-                  </details-menu>
-                </details>
-              </div>
-            </div>
-            <div className="dashboard__bugslist">
-              <ul>
-                {teamContext.currentTeam.bugs.map((bug) =>
-                  bug.isOpen ? (
-                    <li className="bugs__list" key={bug._id}>
-                      <div className="bugs__list__content">
-                        <div className="bugs__list__info__header">
-                          <span>
-                            <GoIssueOpened />
-                          </span>
-                          <div className="bugs__list__headers">
-                            <p className="header">
-                              <Link
-                                to={{ pathname: '/bugdetails', state: bug }}
-                                style={{ color: '#001233' }}
-                              >
-                                {bug.title}
-                              </Link>
-                            </p>
-                            <p className="subheader">
-                              Opened on {bug.date.slice(0, 10)} by{' '}
-                              {bug.createdBy.name}
+
+              <div className="dashboard__bugslist">
+                <ul>
+                  <TabPanel>
+                    {teamContext.currentTeam.bugs.map((bug) =>
+                      bug.isOpen ? (
+                        <li className="bugs__list" key={bug._id}>
+                          <div className="bugs__list__content">
+                            <div className="bugs__list__info__header">
+                              <span>
+                                <GoIssueOpened />
+                              </span>
+                              <div className="bugs__list__headers">
+                                <p className="header">
+                                  <Link
+                                    to={{
+                                      pathname: '/bugdetails',
+                                      state: bug,
+                                    }}
+                                    style={{ color: '#001233' }}
+                                  >
+                                    {bug.title}
+                                  </Link>
+                                </p>
+                                <p className="subheader">
+                                  Opened on
+                                  {bug.date.slice(0, 10)}
+                                  by {bug.createdBy.name}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="bugs__list__comments">
+                            <p>
+                              <span>
+                                <GoComment />
+                              </span>{' '}
+                              {bug.comments.length}
                             </p>
                           </div>
-                        </div>
-                      </div>
-                      <div className="bugs__list__comments">
-                        <p>
-                          <span>
-                            <GoComment />
-                          </span>{' '}
-                          {bug.comments.length}
-                        </p>
-                      </div>
-                    </li>
-                  ) : null
-                )}
-              </ul>
-            </div>
+                        </li>
+                      ) : null
+                    )}
+                  </TabPanel>
+                  <TabPanel>
+                    {teamContext.currentTeam.bugs.map((bug) =>
+                      bug.isOpen === false ? (
+                        <li className="bugs__list" key={bug._id}>
+                          <div className="bugs__list__content">
+                            <div className="bugs__list__info__header">
+                              <span>
+                                <FcCheckmark />
+                              </span>
+                              <div className="bugs__list__headers">
+                                <p className="header">
+                                  <Link
+                                    to={{
+                                      pathname: '/bugdetails',
+                                      state: bug,
+                                    }}
+                                    style={{ color: '#001233' }}
+                                  >
+                                    {bug.title}
+                                  </Link>
+                                </p>
+                                <p className="subheader">
+                                  Opened on
+                                  {bug.date.slice(0, 10)}
+                                  by {bug.createdBy.name}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="bugs__list__comments">
+                            <p>
+                              <span>
+                                <GoComment />
+                              </span>{' '}
+                              {bug.comments.length}
+                            </p>
+                          </div>
+                        </li>
+                      ) : null
+                    )}
+                  </TabPanel>
+                </ul>
+              </div>
+            </Tabs>
           </div>
         </div>
       ) : null}

@@ -26,6 +26,8 @@
         "no-console":"off",
         "prettier/prettier":"error",
         "func-names":"off",
-        "object-shorthand":"off"
+        "object-shorthand":"off",
+        "no-underscore-dangle":"off",
+        "react/jsx-one-expression-per-line" :"off"
     }
 }

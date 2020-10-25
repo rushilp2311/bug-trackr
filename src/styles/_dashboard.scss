@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 .container {
   display: flex;
   justify-content: center;
@@ -69,6 +69,7 @@
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         padding: 16px;
+        padding-bottom: 0;
         .dashboard__bugstatus {
           display: flex;
           flex-direction: row;
@@ -79,6 +80,15 @@
           }
           .closed__bugs {
             width: auto;
+          }
+          .react-tabs__tab-list {
+            margin: 0 !important;
+            border: 0;
+            .react-tabs__tab--selected {
+              background-color: rgb(233, 233, 235);
+              border: 0;
+              border-bottom: 3px solid $main-color;
+            }
           }
         }
         .dashboard__filters {

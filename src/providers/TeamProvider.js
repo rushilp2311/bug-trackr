@@ -1,9 +1,9 @@
-import React, { Component, createContext } from "react";
-import * as authService from "../services/authService";
-import * as teamService from "../services/teamService";
+import React, { Component, createContext } from 'react';
+import * as authService from '../services/authService';
+import * as teamService from '../services/teamService';
 
 export const TeamContext = createContext();
-TeamContext.displayName = "TeamContext";
+TeamContext.displayName = 'TeamContext';
 
 class TeamProvider extends Component {
   state = {
@@ -17,7 +17,7 @@ class TeamProvider extends Component {
       this.setState({ team });
     }
   };
-  updateTeamState = team => {
+  updateTeamState = (team) => {
     this.setState({ team });
   };
   getCurrentTeam = () => {
@@ -32,7 +32,8 @@ class TeamProvider extends Component {
           currentTeam: team,
           updateTeamState: this.updateTeamState,
           getCurrentTeam: this.getCurrentTeam,
-        }}>
+        }}
+      >
         {children}
       </TeamContext.Provider>
     );

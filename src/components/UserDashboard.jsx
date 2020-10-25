@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { FcSearch, FcCheckmark } from "react-icons/fc";
-import { GoComment, GoIssueOpened } from "react-icons/go";
+import React, { useContext } from 'react';
+import { FcSearch, FcCheckmark } from 'react-icons/fc';
+import { GoComment, GoIssueOpened } from 'react-icons/go';
 
-import { RiArrowDropDownFill } from "react-icons/ri";
-import AddBug from "./AddBug";
-import { TeamContext } from "../providers/TeamProvider";
-import { Link } from "react-router-dom";
+import { RiArrowDropDownFill } from 'react-icons/ri';
+import AddBug from './AddBug';
+import { TeamContext } from '../providers/TeamProvider';
+import { Link } from 'react-router-dom';
 
 function UserDashboard() {
   const teamContext = useContext(TeamContext);
@@ -26,7 +26,7 @@ function UserDashboard() {
           <div className="dashboard__header">
             <div className="team_name">
               <h2>
-                <Link to="/teamdetails" style={{ color: "#001233" }}>
+                <Link to="/teamdetails" style={{ color: '#001233' }}>
                   {teamContext.currentTeam.name}
                 </Link>
               </h2>
@@ -49,13 +49,13 @@ function UserDashboard() {
                 <div className="open__bugs">
                   <span>
                     <GoIssueOpened />
-                  </span>{" "}
+                  </span>{' '}
                   {openBugsCount} Open
                 </div>
                 <div className="closed__bugs">
                   <span>
                     <FcCheckmark />
-                  </span>{" "}
+                  </span>{' '}
                   {closeBugsCount} Closed
                 </div>
               </div>
@@ -81,7 +81,7 @@ function UserDashboard() {
                   <summary role="button">
                     Sort
                     <span>
-                      <RiArrowDropDownFill />{" "}
+                      <RiArrowDropDownFill />{' '}
                     </span>
                   </summary>
                   <details-menu>
@@ -107,14 +107,14 @@ function UserDashboard() {
                           <div className="bugs__list__headers">
                             <p className="header">
                               <Link
-                                to={{ pathname: "/bugdetails", state: bug }}
-                                style={{ color: "#001233" }}
+                                to={{ pathname: '/bugdetails', state: bug }}
+                                style={{ color: '#001233' }}
                               >
                                 {bug.title}
                               </Link>
                             </p>
                             <p className="subheader">
-                              Opened on {bug.date.slice(0, 10)} by{" "}
+                              Opened on {bug.date.slice(0, 10)} by{' '}
                               {bug.createdBy.name}
                             </p>
                           </div>
@@ -124,7 +124,7 @@ function UserDashboard() {
                         <p>
                           <span>
                             <GoComment />
-                          </span>{" "}
+                          </span>{' '}
                           {bug.comments.length}
                         </p>
                       </div>

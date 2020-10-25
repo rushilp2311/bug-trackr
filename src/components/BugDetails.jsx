@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { BiArrowBack } from "react-icons/bi";
-import { TiDeleteOutline } from "react-icons/ti";
-import { TeamContext } from "../providers/TeamProvider";
-import * as teamService from "../services/teamService";
-import * as authService from "../services/authService";
-import DeleteBug from "./DeleteBug";
+import React, { Component } from 'react';
+import { BiArrowBack } from 'react-icons/bi';
+import { TiDeleteOutline } from 'react-icons/ti';
+import { TeamContext } from '../providers/TeamProvider';
+import * as teamService from '../services/teamService';
+import * as authService from '../services/authService';
+import DeleteBug from './DeleteBug';
 
 class BugDetails extends Component {
   static contextType = TeamContext;
@@ -50,7 +50,7 @@ class BugDetails extends Component {
         this.setState({ bug });
         this.context.updateTeamState(team.data);
       }
-      document.getElementById("comment").value = "";
+      document.getElementById('comment').value = '';
     }
   };
 
@@ -120,8 +120,8 @@ class BugDetails extends Component {
               </p>
             ) : (
               <p>
-                {bug.title}{" "}
-                <span style={{ background: "#c82333" }}>Closed</span>
+                {bug.title}{' '}
+                <span style={{ background: '#c82333' }}>Closed</span>
               </p>
             )}
             {bug.createdBy ? (
@@ -170,7 +170,7 @@ class BugDetails extends Component {
                   return (
                     <li key={comment._id}>
                       <div className="comment__title">
-                        {comment.comment}{" "}
+                        {comment.comment}{' '}
                         {authService.getCurrentUser()._id ===
                         comment.createdBy.id ? (
                           <span
@@ -183,7 +183,7 @@ class BugDetails extends Component {
                         ) : null}
                       </div>
                       <div className="commented__by">
-                        Commented By {comment.createdBy.name} on{" "}
+                        Commented By {comment.createdBy.name} on{' '}
                         {comment.date.substring(0, 10)}
                       </div>
                     </li>

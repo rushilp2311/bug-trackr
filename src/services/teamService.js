@@ -1,7 +1,7 @@
-import http from "./httpService";
-import { apiUrl } from "../config.json";
+import http from './httpService';
+import { apiUrl } from '../config.json';
 
-const apiEndpoint = apiUrl + "/team";
+const apiEndpoint = `${apiUrl}/team`;
 
 // Finding a Team
 export function findTeam(id) {
@@ -26,7 +26,7 @@ export async function addComment(comment) {
 export async function deleteBug(bug) {
   const result = await http.delete(`${apiUrl}/bug`, {
     headers: {
-      "content-type": "application/json;charset=utf-8",
+      'content-type': 'application/json;charset=utf-8',
       bugid: bug.bugid,
       teamid: bug.teamid,
     },
@@ -37,7 +37,7 @@ export async function deleteBug(bug) {
 export async function deleteComment(comment) {
   const result = await http.delete(`${apiUrl}/comment`, {
     headers: {
-      "content-type": "application/json;charset=utf-8",
+      'content-type': 'application/json;charset=utf-8',
       bugid: comment.bugid,
       teamid: comment.teamid,
       commentid: comment.commentid,

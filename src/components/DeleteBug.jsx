@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import authService from "../services/authService";
-import Modal from "./common/Modal";
-import { MdDelete } from "react-icons/md";
-import { TeamContext } from "../providers/TeamProvider";
-import * as teamService from "../services/teamService";
+import React, { Component } from 'react';
+import authService from '../services/authService';
+import Modal from './common/Modal';
+import { MdDelete } from 'react-icons/md';
+import { TeamContext } from '../providers/TeamProvider';
+import * as teamService from '../services/teamService';
 
 class DeleteBug extends Component {
   static contextType = TeamContext;
@@ -25,7 +25,7 @@ class DeleteBug extends Component {
       if (team != null) {
         this.toggleModal();
         this.context.updateTeamState(team.data);
-        window.location = "/";
+        window.location = '/';
       }
     }
   };
@@ -37,8 +37,7 @@ class DeleteBug extends Component {
         <button onClick={this.toggleModal}>
           <span>
             <MdDelete />
-          </span>{" "}
-          {"  "}
+          </span>{' '}
           Delete this bug
         </button>
         {this.state.showModal ? (

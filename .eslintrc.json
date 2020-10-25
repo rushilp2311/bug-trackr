@@ -1,0 +1,31 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "prettier"
+    ],
+    "plugins": [
+        "react",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars":"warn",
+        "no-console":"off",
+        "prettier/prettier":"error",
+        "func-names":"off",
+        "object-shorthand":"off"
+    }
+}

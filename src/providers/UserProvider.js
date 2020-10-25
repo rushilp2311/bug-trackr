@@ -1,5 +1,5 @@
-import React, { Component, createContext } from "react";
-import * as authService from "../services/authService";
+import React, { Component, createContext } from 'react';
+import * as authService from '../services/authService';
 
 export const UserContext = createContext({ user: null });
 
@@ -11,17 +11,17 @@ class UserProvider extends Component {
     const user = authService.getCurrentUser();
     this.setState({ user });
   };
-  updateUserState = async user => {
+  updateUserState = async (user) => {
     this.setState({ user });
     await authService.updateJWTToken(user.email);
-    
   };
   render() {
     const { user } = this.state;
     const { children } = this.props;
     return (
       <UserContext.Provider
-        value={{ currentUser: user, updateUserState: this.updateUserState }}>
+        value={{ currentUser: user, updateUserState: this.updateUserState }}
+      >
         {children}
       </UserContext.Provider>
     );

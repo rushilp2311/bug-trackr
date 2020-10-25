@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import "./styles/app.scss";
-import "bootstrap/dist/css/bootstrap.css";
-import UserProvider from "./providers/UserProvider";
-import TeamProvider from "./providers/TeamProvider";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import './styles/app.scss';
+import 'bootstrap/dist/css/bootstrap.css';
+import UserProvider from './providers/UserProvider';
+import TeamProvider from './providers/TeamProvider';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,5 +17,5 @@ ReactDOM.render(
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

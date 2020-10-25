@@ -46,4 +46,7 @@ export async function deleteComment(comment) {
   return result;
 }
 
-export function getAllTeam() {}
+export async function updateBugStatus(bug) {
+  const result = await http.post(`${apiUrl}/bug/changeBugStatus`, bug);
+  return result;
+}

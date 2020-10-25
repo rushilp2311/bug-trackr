@@ -78,6 +78,25 @@ class BugDetails extends Component {
     }
   };
 
+  handleChangeBugStatus = async (e) => {
+    e.preventDefault();
+    const user = authService.getCurrentUser();
+    const currentbug = this.props.location.state;
+
+    const changeBug = {
+      teamid: user.team,
+      bugid: currentbug._id,
+    };
+    const team = await teamService.updateBugStatus(changeBug);
+    if (team != null) {
+      const bugs = team.data.bugs;
+      const bug = bugs.find((b) => b._id === currentbug._id);
+
+      this.setState({ bug });
+      this.context.updateTeamState(team.data);
+    }
+  };
+
   render() {
     const { bug } = this.state;
     const user = authService.getCurrentUser();
@@ -101,7 +120,8 @@ class BugDetails extends Component {
               </p>
             ) : (
               <p>
-                {bug.title} <span>Closed</span>
+                {bug.title}{" "}
+                <span style={{ background: "#c82333" }}>Closed</span>
               </p>
             )}
             {bug.createdBy ? (
@@ -123,7 +143,11 @@ class BugDetails extends Component {
               <DeleteBug bug={bug} />
             ) : null
           ) : null}
-          <button className="close_btn">Close this bug</button>
+          {bug.isOpen ? (
+            <button className="close_btn" onClick={this.handleChangeBugStatus}>
+              Close this bug
+            </button>
+          ) : null}
         </div>
         <div className="bug__details__comments">
           <div className="bug__details__comments__title">

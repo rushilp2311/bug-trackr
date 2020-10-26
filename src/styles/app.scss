@@ -1,17 +1,17 @@
-@import "_header";
-@import "_variables";
-@import "_home";
-@import "_form";
-@import "_dashboard";
-@import "_admin";
-@import "_teamcard";
-@import "_modal";
-@import "_addteam";
-@import "_addbug";
-@import "_bugdetails";
-@import "_teamdetails";
-@import "_deletebug";
-
+@import '_header';
+@import '_variables';
+@import '_home';
+@import '_form';
+@import '_dashboard';
+@import '_admin';
+@import '_teamcard';
+@import '_modal';
+@import '_addteam';
+@import '_addbug';
+@import '_bugdetails';
+@import '_teamdetails';
+@import '_deletebug';
+@import '_profile';
 html,
 body,
 div,
@@ -121,7 +121,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 

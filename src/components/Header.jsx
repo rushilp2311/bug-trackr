@@ -23,7 +23,14 @@ function Header(props) {
         )}
         {user && (
           <>
-            <NavLink to="/profile">
+            <NavLink
+              to={{
+                pathname: '/profile',
+                profile: {
+                  user: authService.getCurrentUser(),
+                },
+              }}
+            >
               <p>{authService.getCurrentUser().name}</p>
             </NavLink>
             <NavLink to="/logout">

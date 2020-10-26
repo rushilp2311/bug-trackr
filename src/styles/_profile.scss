@@ -1,0 +1,59 @@
+@import 'variables';
+
+.profile__container {
+  text-align: left;
+  width: 50%;
+  border: 1px solid rgb(231, 231, 231);
+  padding: 30px 32px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255),
+    0 6px 20px 0 rgba(224, 225, 233, 0.76);
+
+  .bug__details__goback {
+    width: fit-content;
+    a {
+      font-size: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      color: $main-color;
+    }
+  }
+  .profile__header {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #e1e4e8;
+    p {
+      font-size: 55px;
+    }
+  }
+  .profile__body {
+    font-size: 25px;
+
+    span {
+      font-weight: 600;
+    }
+    // .profile__id {
+    // }
+    // .profile__email {
+    // }
+    // .profile__team {
+    // }
+    .profile__btn {
+      margin-top: 60px;
+      text-decoration: none;
+      padding: 1px 20px;
+      text-align: center;
+      border-radius: 3px;
+      border: 1px solid rgb(247, 131, 131);
+      background-color: $danger;
+      color: $white;
+      height: 40px;
+      cursor: pointer;
+      font-size: 20px;
+      transition: 0.2s;
+    }
+    .profile__btn:hover {
+      background-color: darken($color: $danger, $amount: 10);
+    }
+  }
+}

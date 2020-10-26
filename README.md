@@ -24,5 +24,3 @@ To check the code for backend you can visit https://github.com/rushilp2311/bug-t
  ![Dash board Page](https://github.com/rushilp2311/bug-trackr/blob/master/src/images/dashboard.png)
  ![Signin Page](https://github.com/rushilp2311/bug-trackr/blob/master/src/images/signin.png)
  ![Signup Page](https://github.com/rushilp2311/bug-trackr/blob/master/src/images/singup.png)
- ![Admin Page](https://github.com/rushilp2311/bug-trackr/blob/master/src/images/admin.png)
-

@@ -106,85 +106,101 @@ function UserDashboard() {
               <div className="dashboard__bugslist">
                 <ul>
                   <TabPanel>
-                    {teamContext.currentTeam.bugs.map((bug) =>
-                      bug.isOpen ? (
-                        <li className="bugs__list" key={bug._id}>
-                          <div className="bugs__list__content">
-                            <div className="bugs__list__info__header">
-                              <span>
-                                <GoIssueOpened />
-                              </span>
-                              <div className="bugs__list__headers">
-                                <p className="header">
-                                  <Link
-                                    to={{
-                                      pathname: '/bugdetails',
-                                      state: bug,
-                                    }}
-                                    style={{ color: '#001233' }}
-                                  >
-                                    {bug.title}
-                                  </Link>
-                                </p>
-                                <p className="subheader">
-                                  Opened on
-                                  {bug.date.slice(0, 10)}
-                                  by {bug.createdBy.name}
+                    {openBugsCount === 0 ? (
+                      <div className="no__bugs">
+                        <h1>No Open Bugs</h1>
+                      </div>
+                    ) : (
+                      <>
+                        {teamContext.currentTeam.bugs.map((bug) =>
+                          bug.isOpen ? (
+                            <li className="bugs__list" key={bug._id}>
+                              <div className="bugs__list__content">
+                                <div className="bugs__list__info__header">
+                                  <span>
+                                    <GoIssueOpened />
+                                  </span>
+                                  <div className="bugs__list__headers">
+                                    <p className="header">
+                                      <Link
+                                        to={{
+                                          pathname: '/bugdetails',
+                                          state: bug,
+                                        }}
+                                        style={{ color: '#001233' }}
+                                      >
+                                        {bug.title}
+                                      </Link>
+                                    </p>
+                                    <p className="subheader">
+                                      Opened on
+                                      {bug.date.slice(0, 10)}
+                                      by {bug.createdBy.name}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="bugs__list__comments">
+                                <p>
+                                  <span>
+                                    <GoComment />
+                                  </span>{' '}
+                                  {bug.comments.length}
                                 </p>
                               </div>
-                            </div>
-                          </div>
-                          <div className="bugs__list__comments">
-                            <p>
-                              <span>
-                                <GoComment />
-                              </span>{' '}
-                              {bug.comments.length}
-                            </p>
-                          </div>
-                        </li>
-                      ) : null
+                            </li>
+                          ) : null
+                        )}
+                      </>
                     )}
                   </TabPanel>
                   <TabPanel>
-                    {teamContext.currentTeam.bugs.map((bug) =>
-                      bug.isOpen === false ? (
-                        <li className="bugs__list" key={bug._id}>
-                          <div className="bugs__list__content">
-                            <div className="bugs__list__info__header">
-                              <span>
-                                <FcCheckmark />
-                              </span>
-                              <div className="bugs__list__headers">
-                                <p className="header">
-                                  <Link
-                                    to={{
-                                      pathname: '/bugdetails',
-                                      state: bug,
-                                    }}
-                                    style={{ color: '#001233' }}
-                                  >
-                                    {bug.title}
-                                  </Link>
-                                </p>
-                                <p className="subheader">
-                                  Opened on
-                                  {bug.date.slice(0, 10)}
-                                  by {bug.createdBy.name}
+                    {closeBugsCount === 0 ? (
+                      <div className="no__bugs">
+                        <h1>No Closed Bug Reported</h1>
+                      </div>
+                    ) : (
+                      <>
+                        {teamContext.currentTeam.bugs.map((bug) =>
+                          bug.isOpen === false ? (
+                            <li className="bugs__list" key={bug._id}>
+                              <div className="bugs__list__content">
+                                <div className="bugs__list__info__header">
+                                  <span>
+                                    <FcCheckmark />
+                                  </span>
+                                  <div className="bugs__list__headers">
+                                    <p className="header">
+                                      <Link
+                                        to={{
+                                          pathname: '/bugdetails',
+                                          state: bug,
+                                        }}
+                                        style={{ color: '#001233' }}
+                                      >
+                                        {bug.title}
+                                      </Link>
+                                    </p>
+                                    <p className="subheader">
+                                      Opened on
+                                      {bug.date.slice(0, 10)}
+                                      by {bug.createdBy.name}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="bugs__list__comments">
+                                <p>
+                                  <span>
+                                    <GoComment />
+                                  </span>{' '}
+                                  {bug.comments.length}
                                 </p>
                               </div>
-                            </div>
-                          </div>
-                          <div className="bugs__list__comments">
-                            <p>
-                              <span>
-                                <GoComment />
-                              </span>{' '}
-                              {bug.comments.length}
-                            </p>
-                          </div>
-                        </li>
-                      ) : null
+                            </li>
+                          ) : null
+                        )}
+                      </>
                     )}
                   </TabPanel>
                 </ul>

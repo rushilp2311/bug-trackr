@@ -2,21 +2,23 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Joi from 'joi';
 import Form from './common/form';
-import auth from '../services/authService';
+import * as authService from '../services/authService';
 
 class SignIn extends Form {
   state = {
     data: { email: '', password: '' },
     errors: {},
   };
+
   schema = {
     email: Joi.string().required().label('Email'),
     password: Joi.string().required().label('Password'),
   };
+
   doSubmit = async () => {
     try {
       const { data } = this.state;
-      await auth.login(data.email, data.password);
+      await authService.login(data.email, data.password);
       window.location = '/';
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
@@ -26,8 +28,9 @@ class SignIn extends Form {
       }
     }
   };
+
   render() {
-    if (auth.getCurrentUser()) return <Redirect to="/" />;
+    if (authService.getCurrentUser()) return <Redirect to="/" />;
 
     return (
       <div className="form__container">

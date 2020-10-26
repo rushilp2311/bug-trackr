@@ -1,6 +1,7 @@
 import React from 'react';
 import { FcCheckmark } from 'react-icons/fc';
 import { GoIssueOpened } from 'react-icons/go';
+
 function TeamCard() {
   return (
     <div className="teamcard__container">

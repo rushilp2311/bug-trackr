@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import authService from '../services/authService';
+import * as authService from '../services/authService';
 import * as userService from '../services/userService';
 
 class TeamDetails extends Component {
@@ -8,6 +8,7 @@ class TeamDetails extends Component {
     usersList: [],
     currentUser: null,
   };
+
   async componentDidMount() {
     const userList = await userService.getAllUsersByTeamId();
     const currentUser = authService.getCurrentUser();

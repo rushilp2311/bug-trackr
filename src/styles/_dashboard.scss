@@ -145,6 +145,12 @@
       .dashboard__bugslist {
         ul {
           padding: 0;
+          .react-tabs__tab-panel {
+            .no__bugs {
+              margin-top: 150px !important;
+              text-align: center;
+            }
+          }
           .bugs__list {
             list-style: none;
             display: flex;
@@ -154,6 +160,7 @@
             height: auto;
             color: $main-color;
             border: 1px solid #e1e4e8;
+
             .bugs__list__content {
               .bugs__list__info__header {
                 display: flex;

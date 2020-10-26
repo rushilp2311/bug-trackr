@@ -2,12 +2,14 @@ import React from 'react';
 import Joi from 'joi';
 import Form from './common/form';
 import * as userService from '../services/userService';
-import auth from '../services/authService';
+import * as authService from '../services/authService';
+
 class SignUp extends Form {
   state = {
     data: { email: '', password: '', name: '' },
     errors: {},
   };
+
   schema = {
     email: Joi.string().required().email().label('Email'),
     password: Joi.string().required().min(5).label('Password'),
@@ -17,7 +19,7 @@ class SignUp extends Form {
   doSubmit = async () => {
     try {
       const response = await userService.register(this.state.data);
-      auth.loginWithJwt(response.headers['x-auth-token']);
+      authService.loginWithJwt(response.headers['x-auth-token']);
       window.location = '/';
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {

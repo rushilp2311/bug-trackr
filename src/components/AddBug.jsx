@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import Modal from './common/Modal';
 import { TeamContext } from '../providers/TeamProvider';
@@ -6,6 +7,7 @@ import * as authService from '../services/authService';
 
 class AddBug extends Component {
   static contextType = TeamContext;
+
   state = {
     showModal: false,
     data: {},
@@ -13,28 +15,37 @@ class AddBug extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const user = authService.getCurrentUser();
-    const bug = {
-      email: user.email,
-      teamid: user.team,
-      title: this.state.data.title,
-      description: this.state.data.description,
-      isOpen: true,
-    };
-    const team = await teamService.addBug(bug);
-    if (team != null) {
-      this.context.updateTeamState(team.data);
+    if (
+      this.state.data.title !== undefined &&
+      this.state.data.description !== undefined
+    ) {
+      const user = authService.getCurrentUser();
+      const bug = {
+        email: user.email,
+        teamid: user.team,
+        title: this.state.data.title,
+        description: this.state.data.description,
+        isOpen: true,
+      };
+
+      const team = await teamService.addBug(bug);
+      if (team != null) {
+        this.context.updateTeamState(team.data);
+      }
+      this.toggleModal();
     }
-    this.toggleModal();
   };
+
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
     data[input.name] = input.value;
     this.setState({ data });
   };
+
   toggleModal = () => {
     this.setState({ showModal: !this.state.showModal });
   };
+
   render() {
     return (
       <>

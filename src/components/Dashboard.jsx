@@ -3,6 +3,7 @@ import { UserContext } from '../providers/UserProvider';
 import AddTeam from './AddTeam';
 import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
+
 function Dashboard() {
   const user = useContext(UserContext);
   return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Modal from './common/Modal';
 import { joinTeam } from '../services/userService';
 import { UserContext } from '../providers/UserProvider';
+
 class AddTeam extends Component {
   state = {
     showModal: false,
@@ -19,14 +20,17 @@ class AddTeam extends Component {
     }
     window.location = '/';
   };
+
   handleChange = ({ currentTarget: input }) => {
     console.log(input.value);
     if (input.value !== null && input.value > 0) {
-      let teamid = input.value;
+      const teamid = input.value;
       this.setState({ teamid });
     }
   };
+
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
+
   render() {
     return (
       <div className="addteam__container">

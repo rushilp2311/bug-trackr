@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import authService from '../services/authService';
-import Modal from './common/Modal';
 import { MdDelete } from 'react-icons/md';
+import * as authService from '../services/authService';
+import Modal from './common/Modal';
 import { TeamContext } from '../providers/TeamProvider';
 import * as teamService from '../services/teamService';
 
 class DeleteBug extends Component {
   static contextType = TeamContext;
+
   state = {
     showModal: false,
   };
@@ -31,6 +32,7 @@ class DeleteBug extends Component {
   };
 
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
+
   render() {
     return (
       <>

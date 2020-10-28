@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
-import * as authService from '../services/authService';
+import { leaveTeam } from '../services/userService';
 
-function Profile(props) {
+import * as authService from '../services/authService';
+import { UserContext } from '../providers/UserProvider';
+
+const leaveTeamHandle = async (updateUserState, currentUser) => {
+  const user = { ...currentUser };
+  user.team = 0;
+  const result = await leaveTeam(user);
+  if (result) {
+    await updateUserState(result.data);
+  } else {
+    console.log('User Not Found');
+  }
+  window.location = '/';
+};
+function Profile() {
   const user = authService.getCurrentUser();
+  const userContext = useContext(UserContext);
   return (
     <>
       <div className="profile__container">
@@ -29,7 +44,12 @@ function Profile(props) {
           <p className="profile__team">
             <span>Your Team ID:</span> #{user.team}{' '}
           </p>
-          <button className="profile__btn">Leave this team</button>
+          <button
+            className="profile__btn"
+            onClick={() => leaveTeamHandle(userContext.updateUserState, user)}
+          >
+            Leave this team
+          </button>
         </div>
       </div>
     </>

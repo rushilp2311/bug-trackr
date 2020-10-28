@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import '../styles/app.scss';
 import * as authService from '../services/authService';
+import { UserContext } from '../providers/UserProvider';
 
 function Header(props) {
   const { user } = props;
+  const currentUser = useContext(UserContext);
   return (
     <header className="header">
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -27,7 +29,7 @@ function Header(props) {
               to={{
                 pathname: '/profile',
                 profile: {
-                  user: authService.getCurrentUser(),
+                  updateUserState: currentUser.updateUserState,
                 },
               }}
             >

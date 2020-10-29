@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FcSearch, FcCheckmark } from 'react-icons/fc';
+import { FcCheckmark } from 'react-icons/fc';
 import { GoComment, GoIssueOpened } from 'react-icons/go';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -7,6 +7,7 @@ import { RiArrowDropDownFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import AddBug from './AddBug';
 import { TeamContext } from '../providers/TeamProvider';
+import Search from './common/search';
 
 function UserDashboard() {
   const teamContext = useContext(TeamContext);
@@ -33,14 +34,7 @@ function UserDashboard() {
               </h2>
             </div>
             <div className="dashboard__controls">
-              <input
-                type="text"
-                name="search"
-                id="bug_search"
-                aria-label="Search all bugs"
-                placeholder="Search all bugs"
-              />
-              <FcSearch className="search_logo" />
+              <Search />
               <AddBug />
             </div>
           </div>
@@ -133,9 +127,9 @@ function UserDashboard() {
                                       </Link>
                                     </p>
                                     <p className="subheader">
-                                      Opened on
-                                      {bug.date.slice(0, 10)}
-                                      by {bug.createdBy.name}
+                                      {` Opened on
+                                      ${bug.date.slice(0, 10)} by 
+                                      ${bug.createdBy.name}`}
                                     </p>
                                   </div>
                                 </div>
@@ -182,9 +176,9 @@ function UserDashboard() {
                                       </Link>
                                     </p>
                                     <p className="subheader">
-                                      Opened on
-                                      {bug.date.slice(0, 10)}
-                                      by {bug.createdBy.name}
+                                      {` Opened on
+                                      ${bug.date.slice(0, 10)} by 
+                                      ${bug.createdBy.name}`}
                                     </p>
                                   </div>
                                 </div>

@@ -41,15 +41,21 @@ function Profile() {
           <p className="profile__email">
             <span>Email:</span> {user.email}
           </p>
-          <p className="profile__team">
-            <span>Your Team ID:</span> #{user.team}{' '}
-          </p>
-          <button
-            className="profile__btn"
-            onClick={() => leaveTeamHandle(userContext.updateUserState, user)}
-          >
-            Leave this team
-          </button>
+          {user.team > 0 ? (
+            <>
+              <p className="profile__team">
+                <span>Your Team ID:</span> #{user.team}{' '}
+              </p>
+              <button
+                className="profile__btn"
+                onClick={() =>
+                  leaveTeamHandle(userContext.updateUserState, user)
+                }
+              >
+                Leave this team
+              </button>
+            </>
+          ) : null}
         </div>
       </div>
     </>

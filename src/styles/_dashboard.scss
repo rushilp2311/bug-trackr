@@ -13,34 +13,54 @@
       .dashboard__controls {
         position: relative;
         display: flex;
-        input {
-          display: block;
-          width: 100% !important;
-          padding: 4px 32.5px;
-          height: fit-content;
-          line-height: 20px;
-          overflow: visible;
-          color: #303336;
-          border: 0;
-          border: 0.4px solid rgb(218, 218, 218);
-          border-radius: 4px;
-          margin-right: 20px;
-        }
-        input:focus {
-          outline-offset: 0px !important;
-          border: 0.4px solid $main-color;
-          outline: none !important;
-          padding: 4px 32.5px;
-        }
-        .search_logo {
-          overflow: hidden;
-          position: absolute;
-          top: 11px;
-          left: 10px;
-          display: block;
-          text-align: center;
-          pointer-events: none;
-          color: #959da5;
+        justify-content: space-between;
+        .search__bar {
+          width: 80%;
+          .search__bar__input {
+            input {
+              display: block;
+              width: 100% !important;
+              padding: 4px 32.5px;
+              height: fit-content;
+              line-height: 20px;
+              overflow: visible;
+              color: #303336;
+              border: 0;
+              border: 0.4px solid rgb(218, 218, 218);
+              border-radius: 4px;
+              margin-right: 20px;
+            }
+            input:focus {
+              outline-offset: 0px !important;
+              outline: none !important;
+              padding: 4px 32.5px;
+            }
+            .search_logo {
+              overflow: hidden;
+              position: absolute;
+              top: 11px;
+              left: 10px;
+              display: block;
+              text-align: center;
+              pointer-events: none;
+              color: #959da5;
+            }
+          }
+          .search__list {
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            border: 0.4px solid rgb(218, 218, 218);
+            border-top: 0px;
+            font-size: 18px;
+            ul {
+              list-style: none;
+              margin: 0;
+              li {
+                padding: 5px 22px;
+                border-top: 0.4px solid rgb(218, 218, 218);
+              }
+            }
+          }
         }
         .dashboard__controls__button {
           padding: 5px 12px;

@@ -58,6 +58,30 @@
               li {
                 padding: 5px 22px;
                 border-top: 0.4px solid rgb(218, 218, 218);
+                .search__bug__title {
+                  margin: 0;
+                  margin-bottom: 4px;
+                  width: 100%;
+                  p {
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    justify-content: space-between;
+                    span {
+                      background-color: $success;
+                      color: $white;
+                      padding: 5px 22px;
+                      border-radius: 20px;
+                      font-size: 12px;
+                    }
+                  }
+                }
+                .search__bug__author {
+                  text-decoration: none;
+                  margin: 0;
+                  font-size: 12px;
+                  color: #586069;
+                }
               }
             }
           }
@@ -148,7 +172,10 @@
               }
               details-menu {
                 border-radius: 5px;
+                border: 0.4px solid rgb(218, 218, 218);
+                border-top: 0;
                 position: absolute;
+                width: 200px;
                 z-index: 99;
                 overflow: hidden;
                 top: auto;
@@ -156,7 +183,29 @@
                 left: auto;
                 background-color: $white;
                 animation-duration: 0.12s;
+                box-shadow: 0 4px 8px 0 rgb(204, 203, 203),
+                  0 6px 20px 0 rgba(224, 225, 233, 0.76);
+
                 animation: cubic-bezier(0, 0.1, 0.1, 1) backwards;
+                p {
+                  margin-top: 10px;
+                  padding-left: 12px;
+                  margin-bottom: 10px;
+                  font-size: 18px;
+                }
+                ul {
+                  margin: 0;
+                  li {
+                    list-style: none;
+
+                    padding: 10px 12px;
+                    border-top: 0.4px solid rgb(218, 218, 218);
+                    cursor: pointer;
+                  }
+                  li:hover {
+                    background-color: rgb(233, 233, 235);
+                  }
+                }
               }
             }
           }

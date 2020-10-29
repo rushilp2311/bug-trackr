@@ -13,8 +13,10 @@ class Search extends Component {
 
   componentDidMount() {
     const { currentTeam } = this.context;
-    const { bugs } = currentTeam;
-    this.setState({ items: bugs });
+    if (currentTeam) {
+      const { bugs } = currentTeam;
+      this.setState({ items: bugs });
+    }
   }
 
   onTextChange = (e) => {
@@ -44,17 +46,35 @@ class Search extends Component {
     return (
       <div className="search__list">
         <ul>
-          {suggestions.map((item) => (
+          {suggestions.map((bug) => (
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-            <li key={item._id}>
+            <li key={bug._id}>
               <Link
                 to={{
                   pathname: '/bugdetails',
-                  state: item,
+                  state: bug,
                 }}
-                style={{ color: '#001233' }}
+                style={{ color: '#001233', textDecoration: 'none' }}
               >
-                {item.title}
+                <div className="search__bug">
+                  <p className="search__bug__title">
+                    {' '}
+                    {bug.isOpen ? (
+                      <p>
+                        {bug.title} <span>Open</span>
+                      </p>
+                    ) : (
+                      <p>
+                        {bug.title}{' '}
+                        <span style={{ background: '#c82333' }}>Closed</span>
+                      </p>
+                    )}{' '}
+                  </p>
+                  <p className="search__bug__author">
+                    {` Opened on ${bug.date.slice(0, 10)} by 
+                  ${bug.createdBy.name}`}
+                  </p>
+                </div>
               </Link>
             </li>
           ))}

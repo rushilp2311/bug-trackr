@@ -2,6 +2,9 @@
 
 To check the code for backend you can visit https://github.com/rushilp2311/bug-trackr-backend
 
+<h3>(Development in Progress)</h3>
+
+
 ### Technologies Used
   - ReactJs
   - SCSS

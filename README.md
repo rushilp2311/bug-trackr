@@ -2,6 +2,8 @@
 
 To check the code for backend you can visit https://github.com/rushilp2311/bug-trackr-backend
 
+[Delpoyed Site](https://focused-ramanujan-1df165.netlify.app/)
+
 <h3>Initial Version Deployed</h3>
 
 

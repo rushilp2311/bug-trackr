@@ -46,7 +46,6 @@ class Search extends Component {
       <div className="search__list">
         <ul>
           {suggestions.map((bug) => (
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <li key={bug._id}>
               <Link
                 to={{

@@ -31,7 +31,6 @@ class Search extends Component {
   };
 
   suggestionSelected(value) {
-    console.log(value);
     this.setState(() => ({
       text: value,
       suggestions: [],
@@ -57,19 +56,19 @@ class Search extends Component {
                 style={{ color: '#001233', textDecoration: 'none' }}
               >
                 <div className="search__bug">
-                  <p className="search__bug__title">
+                  <div className="search__bug__title">
                     {' '}
                     {bug.isOpen ? (
-                      <p>
+                      <div>
                         {bug.title} <span>Open</span>
-                      </p>
+                      </div>
                     ) : (
-                      <p>
+                      <div>
                         {bug.title}{' '}
                         <span style={{ background: '#c82333' }}>Closed</span>
-                      </p>
+                      </div>
                     )}{' '}
-                  </p>
+                  </div>
                   <p className="search__bug__author">
                     {` Opened on ${bug.date.slice(0, 10)} by 
                   ${bug.createdBy.name}`}

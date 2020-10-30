@@ -13,17 +13,17 @@ export async function getCurrentUserTeam(teamid) {
 }
 
 export async function addBug(bug) {
-  const result = await http.post(`${apiEndpoint}/bug`, bug);
+  const result = await http.post(`/bug`, bug);
   return result;
 }
 
 export async function addComment(comment) {
-  const result = await http.post(`${apiEndpoint}/comment`, comment);
+  const result = await http.post(`/comment`, comment);
   return result;
 }
 
 export async function deleteBug(bug) {
-  const result = await http.delete(`${apiEndpoint}/bug`, {
+  const result = await http.delete(`/bug`, {
     headers: {
       'content-type': 'application/json;charset=utf-8',
       bugid: bug.bugid,
@@ -34,7 +34,7 @@ export async function deleteBug(bug) {
 }
 
 export async function deleteComment(comment) {
-  const result = await http.delete(`${apiEndpoint}/comment`, {
+  const result = await http.delete(`/comment`, {
     headers: {
       'content-type': 'application/json;charset=utf-8',
       bugid: comment.bugid,
@@ -46,6 +46,6 @@ export async function deleteComment(comment) {
 }
 
 export async function updateBugStatus(bug) {
-  const result = await http.post(`${apiEndpoint}/bug/changeBugStatus`, bug);
+  const result = await http.post(`/bug/changeBugStatus`, bug);
   return result;
 }

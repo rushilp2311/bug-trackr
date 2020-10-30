@@ -6,7 +6,6 @@ import * as authService from '../services/authService';
 function TeamDetails() {
   const currentUser = authService.getCurrentUser();
   const team = useContext(TeamContext);
-  console.log(team);
   const { userList } = team;
   return (
     <div className="team__details__container">

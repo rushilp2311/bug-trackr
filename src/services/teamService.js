@@ -1,7 +1,6 @@
 import http from './httpService';
-import { apiUrl } from '../config.json';
 
-const apiEndpoint = `${apiUrl}/team`;
+const apiEndpoint = `/team`;
 
 // Finding a Team
 export function findTeam(id) {
@@ -14,17 +13,17 @@ export async function getCurrentUserTeam(teamid) {
 }
 
 export async function addBug(bug) {
-  const result = await http.post(`${apiUrl}/bug`, bug);
+  const result = await http.post(`${apiEndpoint}/bug`, bug);
   return result;
 }
 
 export async function addComment(comment) {
-  const result = await http.post(`${apiUrl}/comment`, comment);
+  const result = await http.post(`${apiEndpoint}/comment`, comment);
   return result;
 }
 
 export async function deleteBug(bug) {
-  const result = await http.delete(`${apiUrl}/bug`, {
+  const result = await http.delete(`${apiEndpoint}/bug`, {
     headers: {
       'content-type': 'application/json;charset=utf-8',
       bugid: bug.bugid,
@@ -35,7 +34,7 @@ export async function deleteBug(bug) {
 }
 
 export async function deleteComment(comment) {
-  const result = await http.delete(`${apiUrl}/comment`, {
+  const result = await http.delete(`${apiEndpoint}/comment`, {
     headers: {
       'content-type': 'application/json;charset=utf-8',
       bugid: comment.bugid,
@@ -47,6 +46,6 @@ export async function deleteComment(comment) {
 }
 
 export async function updateBugStatus(bug) {
-  const result = await http.post(`${apiUrl}/bug/changeBugStatus`, bug);
+  const result = await http.post(`${apiEndpoint}/bug/changeBugStatus`, bug);
   return result;
 }

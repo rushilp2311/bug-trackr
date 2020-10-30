@@ -1,9 +1,8 @@
 import http from './httpService';
 import * as teamService from './teamService';
-import { apiUrl } from '../config.json';
 import * as authService from './authService';
 
-const apiEndpoint = `${apiUrl}/users`;
+const apiEndpoint = `/users`;
 
 export function register(user) {
   return http.post(apiEndpoint, {

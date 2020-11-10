@@ -10,7 +10,7 @@ function Home() {
         <p>Catch all the Bugs.</p>
         <p>Collaborate with your team</p>
         <Link to="/signin">
-          <button>Get Started</button>
+          <button className="btn">Get Started</button>
         </Link>
       </main>
       <img src={team} alt="team" />

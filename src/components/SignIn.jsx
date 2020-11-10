@@ -33,22 +33,20 @@ class SignIn extends Form {
     if (authService.getCurrentUser()) return <Redirect to="/" />;
 
     return (
-      <div className="form__container">
-        <div className="signup__form">
-          {/* <div className='form__header'>
+      <div className="signup__form">
+        {/* <div className='form__header'>
             <p>Sign up for free to start catching bugs.</p>
             <button className='google_btn'>SIGN UP WITH GOOGLE</button>
           </div>
           <hr /> */}
-          <form onSubmit={this.handleSubmit}>
-            <div className="form__body">
-              <p>Sign in with your email address</p>
-              {this.renderInput('email', 'Enter your Email')}
-              {this.renderInput('password', 'Enter your Password', 'password')}
-              {this.renderButton('SIGN IN')}
-            </div>
-          </form>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form__body">
+            <p>Sign in with your email address</p>
+            {this.renderInput('email', 'Enter your Email')}
+            {this.renderInput('password', 'Enter your Password', 'password')}
+            {this.renderButton('SIGN IN')}
+          </div>
+        </form>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 
 body {
   background-color: $white;
@@ -59,52 +59,33 @@ body {
   }
 }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
-@media (max-width: 900px) {
-  .app {
-    .container {
-      margin-top: 50px;
-      flex-direction: column;
-      .heading {
-        p {
-          font-size: 40px;
-        }
-      }
-    }
-    img {
-      margin-top: 30px;
-      height: 200px;
-    }
-  }
-}
-
 @media (max-width: 500px) {
   .app {
-    padding: 0;
+    padding: 2vw 10vw;
+    font-family: $primary-font, sans-serif;
+
     .container {
-      margin-top: 50px;
+      display: flex;
       flex-direction: column;
-      .heading {
-        p {
-          font-size: 30px;
+      .main__header {
+        display: flex;
+        flex-direction: column;
+
+        .heading {
+          margin-top: 100px;
+          font-weight: 900;
+          text-align: left;
+
+          p {
+            font-size: 40px;
+            margin: 0;
+          }
         }
-        button {
-          font-size: 24px;
-          width: 100%;
+        img {
+          margin-top: 100px;
+          max-height: 250px;
         }
       }
-    }
-
-    img {
-      margin-top: 30px;
-      height: 200px;
     }
   }
 }

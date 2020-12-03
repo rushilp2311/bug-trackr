@@ -9,8 +9,8 @@ import Profile from './components/Profile';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import TeamDetails from './components/TeamDeatils';
-
 import { UserContext } from './providers/UserProvider';
+
 function App() {
   const context = useContext(UserContext);
   return (

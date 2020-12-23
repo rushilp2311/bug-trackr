@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import team from '../images/team.svg';
 import '../styles/app.scss';
 
+/**
+ * TODO: Add Dark Mode.
+ */
+
 function Home() {
   return (
     <div className="main__header">

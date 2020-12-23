@@ -11,6 +11,10 @@ import AddBug from './AddBug';
 import { TeamContext } from '../providers/TeamProvider';
 import Search from './common/search';
 
+/**
+ * TODO: (1) Make Users List scrollable. (2) Refactor the bugs list into separate component (3) Add Chat functionality.
+ */
+
 function UserDashboard() {
   const teamContext = useContext(TeamContext);
   const [sortByUser, setSortByUser] = useState('');

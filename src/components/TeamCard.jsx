@@ -2,6 +2,10 @@ import React from 'react';
 import { FcCheckmark } from 'react-icons/fc';
 import { GoIssueOpened } from 'react-icons/go';
 
+/**
+ * TODO: Load live data from backend.
+ */
+
 function TeamCard() {
   return (
     <div className="teamcard__container">

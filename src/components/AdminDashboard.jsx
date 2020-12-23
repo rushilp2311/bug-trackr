@@ -1,6 +1,10 @@
 import React from 'react';
 import TeamCard from './TeamCard';
 
+/**
+ * TODO: Finish the Admin functionality.
+ */
+
 function AdminDashboard() {
   return (
     <div className="admin__dashboard">

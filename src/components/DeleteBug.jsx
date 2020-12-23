@@ -13,27 +13,30 @@ class DeleteBug extends Component {
   };
 
   handleClick = async () => {
-    const currentBug = this.props.bug;
+    const { bug } = this.props;
+    const { updateTeamState } = this.context;
+    const currentBug = bug;
     const currentUser = authService.getCurrentUser();
 
     if (currentUser.id === currentBug.createdBy._id) {
-      const bug = {
+      const team = await teamService.deleteBug({
         teamid: currentUser.team,
         bugid: currentBug._id,
-      };
-      const team = await teamService.deleteBug(bug);
+      });
 
       if (team != null) {
         this.toggleModal();
-        this.context.updateTeamState(team.data);
+        updateTeamState(team.data);
         window.location = '/';
       }
     }
   };
 
+  // eslint-disable-next-line react/destructuring-assignment
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
   render() {
+    const { showModal } = this.state;
     return (
       <>
         <button onClick={this.toggleModal}>
@@ -42,7 +45,7 @@ class DeleteBug extends Component {
           </span>{' '}
           Delete this bug
         </button>
-        {this.state.showModal ? (
+        {showModal ? (
           <Modal>
             <div className="delete__modal">
               <p>Are you sure you want to delete this bug?</p>

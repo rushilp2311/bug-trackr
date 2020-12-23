@@ -10,10 +10,13 @@ class AddTeam extends Component {
   };
 
   joinaTeam = async (user) => {
-    if (this.state.teamid > 0) {
+    const { teamid } = this.state;
+    const { context } = this.props;
+    const { updateUserState } = context;
+    if (teamid > 0) {
       const result = await joinTeam(user);
       if (result) {
-        await this.props.context.updateUserState(result.data);
+        await updateUserState(result.data);
       } else {
         console.log('Team Not Found');
       }
@@ -29,9 +32,11 @@ class AddTeam extends Component {
     }
   };
 
+  // eslint-disable-next-line react/destructuring-assignment
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
   render() {
+    const { showModal, teamid } = this.state;
     return (
       <div className="addteam__container">
         <h1>You are not in a Team </h1>
@@ -39,7 +44,7 @@ class AddTeam extends Component {
           <h4>Join a team to contribute </h4>
           <button onClick={this.toggleModal}>Join a Team</button>
         </div>
-        {this.state.showModal ? (
+        {showModal ? (
           <Modal>
             <div className="modal__container">
               <div className="modal__header">
@@ -53,7 +58,7 @@ class AddTeam extends Component {
                     {(value) => (
                       <button
                         onClick={() =>
-                          this.joinaTeam({ ...value, team: this.state.teamid })
+                          this.joinaTeam({ ...value, team: teamid })
                         }
                       >
                         Join

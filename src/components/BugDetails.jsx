@@ -6,6 +6,9 @@ import * as teamService from '../services/teamService';
 import * as authService from '../services/authService';
 import DeleteBug from './DeleteBug';
 
+/*
+  TODO: Break the comment section and close/delete controls into different components
+*/
 class BugDetails extends Component {
   static contextType = TeamContext;
 

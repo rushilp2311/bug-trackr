@@ -6,6 +6,10 @@ import { leaveTeam } from '../services/userService';
 import * as authService from '../services/authService';
 import { UserContext } from '../providers/UserProvider';
 
+/**
+ * TODO: Add user specific bugs list. (The Bugs in which user commented or the bugs user created).
+ */
+
 const leaveTeamHandle = async (updateUserState, currentUser) => {
   const user = { ...currentUser };
   user.team = 0;

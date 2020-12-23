@@ -4,6 +4,9 @@ import Joi from 'joi';
 import Form from './common/form';
 import * as authService from '../services/authService';
 
+/**
+ * TODO: Add OAuth Login with google.
+ */
 class SignIn extends Form {
   state = {
     data: { email: '', password: '' },

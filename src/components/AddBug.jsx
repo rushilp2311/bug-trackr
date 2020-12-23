@@ -14,39 +14,45 @@ class AddBug extends Component {
   };
 
   handleSubmit = async (e) => {
+    const { updateTeamState } = this.context;
+    const { data } = this.state;
+    const { title, description } = data;
+
     e.preventDefault();
-    if (
-      this.state.data.title !== undefined &&
-      this.state.data.description !== undefined
-    ) {
+
+    if (title !== undefined && description !== undefined) {
       const user = authService.getCurrentUser();
-      const bug = {
+
+      const team = await teamService.addBug({
         email: user.email,
         teamid: user.team,
-        title: this.state.data.title,
-        description: this.state.data.description,
+        title: title,
+        description: description,
         isOpen: true,
-      };
+      });
 
-      const team = await teamService.addBug(bug);
       if (team != null) {
-        this.context.updateTeamState(team.data);
+        updateTeamState(team.data);
       }
+
       this.toggleModal();
     }
   };
 
   handleChange = ({ currentTarget: input }) => {
+    // eslint-disable-next-line react/destructuring-assignment
     const data = { ...this.state.data };
     data[input.name] = input.value;
     this.setState({ data });
   };
 
   toggleModal = () => {
-    this.setState({ showModal: !this.state.showModal });
+    const { showModal } = this.state;
+    this.setState({ showModal: !showModal });
   };
 
   render() {
+    const { showModal } = this.state;
     return (
       <>
         <button
@@ -55,7 +61,7 @@ class AddBug extends Component {
         >
           New Bug
         </button>
-        {this.state.showModal ? (
+        {showModal ? (
           <Modal>
             <div className="modal__container bug__modal__container">
               <div className="modal__header bug__modal__header">

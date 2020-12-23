@@ -18,3 +18,14 @@
 ul {
   padding-left: 0;
 }
+.app {
+}
+
+@media (max-width: 500px) {
+  .app {
+    padding: 0px;
+    .container {
+      margin-top: 30px;
+    }
+  }
+}

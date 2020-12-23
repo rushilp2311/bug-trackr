@@ -16,6 +16,7 @@
         justify-content: space-between;
         .search__bar {
           width: 80%;
+          margin-right: 10px;
           .search__bar__input {
             input {
               display: block;
@@ -260,6 +261,213 @@
           }
           .bugs__list:hover {
             background-color: rgb(233, 233, 235);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .app {
+    padding: 40px;
+    .container {
+      .dashboard__container {
+        padding: 20px;
+        width: 100%;
+        .dashboard__header {
+          .dashboard__controls {
+            position: relative;
+            flex-direction: row;
+            justify-content: center;
+            .search__bar {
+              margin-right: 10px;
+
+              .search__list {
+                width: 75%;
+                position: absolute;
+                background-color: white;
+                z-index: 1000;
+              }
+            }
+          }
+        }
+        .dashboard__body {
+          margin-top: 20px;
+          .react-tabs {
+            .dashboard__info {
+              display: flex;
+              flex-direction: row;
+              padding: 10px;
+              padding-bottom: 0;
+              .dashboard__bugstatus {
+                display: flex;
+                flex-direction: row;
+                width: 80%;
+                .open__bugs {
+                  width: 70px;
+                }
+                .react-tabs__tab-list {
+                  .react-tabs__tab {
+                    padding: 5px;
+                    margin-right: 5px;
+                  }
+                }
+              }
+              .dashboard__filters {
+                details {
+                  margin-right: 0px;
+                  summary {
+                    list-style: none;
+                  }
+                  summary::-webkit-details-marker {
+                    display: none;
+                  }
+
+                  summary {
+                    span {
+                      font-size: 20px;
+                    }
+                  }
+                  details-menu {
+                    left: 75%;
+                    right: auto;
+                    font-size: 18px;
+                  }
+                }
+              }
+            }
+          }
+          .dashboard__bugslist {
+            ul {
+              .bugs__list {
+                .bugs__list__content {
+                  .bugs__list__info__header {
+                    .bugs__list__headers {
+                      margin-left: 10px;
+                      .header {
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                      }
+                      .subheader {
+                        font-size: 11px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .dashboard__container {
+      padding: 20px;
+      width: 100%;
+      .dashboard__header {
+        .dashboard__controls {
+          position: relative;
+          flex-direction: column;
+          align-items: center;
+          .search__bar {
+            width: 100%;
+            margin-bottom: 15px;
+            position: relative;
+            .search__list {
+              width: 100%;
+              position: absolute;
+              background-color: white;
+              z-index: 1000;
+              ul {
+                li {
+                  .search__bug__title {
+                    div {
+                      font-size: 14px;
+                      span {
+                        padding: 5px 18px;
+
+                        font-size: 10px;
+                      }
+                    }
+                  }
+                  .search__bug__author {
+                    font-size: 10px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .dashboard__body {
+        margin-top: 20px;
+        .react-tabs {
+          .dashboard__info {
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            padding-bottom: 0;
+            .dashboard__bugstatus {
+              display: flex;
+              flex-direction: row;
+              width: 80%;
+              .open__bugs {
+                width: 70px;
+              }
+              .react-tabs__tab-list {
+                .react-tabs__tab {
+                  padding: 0px;
+                  margin-right: 5px;
+                }
+              }
+            }
+            .dashboard__filters {
+              details {
+                margin-right: 0px;
+                summary {
+                  list-style: none;
+                }
+                summary::-webkit-details-marker {
+                  display: none;
+                }
+
+                summary {
+                  span {
+                    font-size: 15px;
+                  }
+                }
+                details-menu {
+                  left: 50%;
+                  right: auto;
+                  font-size: 15px;
+                }
+              }
+            }
+          }
+        }
+        .dashboard__bugslist {
+          ul {
+            .bugs__list {
+              .bugs__list__content {
+                .bugs__list__info__header {
+                  .bugs__list__headers {
+                    margin-left: 10px;
+                    .header {
+                      font-size: 14px;
+                      margin-bottom: 5px;
+                    }
+                    .subheader {
+                      font-size: 11px;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

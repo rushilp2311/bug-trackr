@@ -39,7 +39,7 @@ class AddTeam extends Component {
     const { showModal, teamid } = this.state;
     return (
       <div className="addteam__container">
-        <h1>You are not in a Team </h1>
+        <p className="title">You are not in a Team </p>
         <div className="addteam__body">
           <h4>Join a team to contribute </h4>
           <button onClick={this.toggleModal}>Join a Team</button>

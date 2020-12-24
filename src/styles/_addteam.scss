@@ -1,10 +1,11 @@
-@import "_variables";
+@import '_variables';
 .addteam__container {
   display: flex;
   flex-direction: column;
   justify-items: center;
-
-  h1 {
+  margin-top: 30px;
+  .title {
+    font-size: 40px;
     color: darken($color: $danger, $amount: 3);
   }
   .addteam__body {
@@ -20,5 +21,17 @@
       border-radius: 2px;
     }
   }
-  
+}
+
+@media only screen and (max-width: 768px) {
+  .addteam__container {
+    padding: 0px 30px;
+    .title {
+      font-size: 30px;
+    }
+    .addteam__body {
+      margin-top: 30px;
+      text-align: center;
+    }
+  }
 }

@@ -32,12 +32,6 @@
     span {
       font-weight: 600;
     }
-    // .profile__id {
-    // }
-    // .profile__email {
-    // }
-    // .profile__team {
-    // }
     .profile__btn {
       margin-top: 60px;
       text-decoration: none;
@@ -54,6 +48,19 @@
     }
     .profile__btn:hover {
       background-color: darken($color: $danger, $amount: 10);
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .profile__container {
+    width: 90%;
+    padding: 30px 22px;
+    .profile__body {
+      font-size: 20px;
+      .profile__btn {
+        margin-top: 50px;
+      }
     }
   }
 }

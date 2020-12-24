@@ -59,30 +59,30 @@ body {
   }
 }
 
-@media (max-width: 500px) {
+@media only screen and (max-width: 768px) {
   .app {
     padding: 2vw 10vw;
-    font-family: $primary-font, sans-serif;
-
     .container {
-      display: flex;
-      flex-direction: column;
       .main__header {
         display: flex;
         flex-direction: column;
 
         .heading {
-          margin-top: 100px;
-          font-weight: 900;
+          margin-top: 50px;
+          margin-left: 5vw;
+          padding: 0px 5vw;
           text-align: left;
-
           p {
-            font-size: 40px;
+            font-size: 35px;
             margin: 0;
+          }
+          button {
+            margin-top: 40px;
+            font-size: 20px;
           }
         }
         img {
-          margin-top: 100px;
+          margin-top: 60px;
           max-height: 250px;
         }
       }

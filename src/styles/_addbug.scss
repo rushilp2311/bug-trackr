@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 .bug__modal__container {
   height: auto;
   .bug__modal__header {
@@ -39,6 +39,21 @@
         .close-btn:hover {
           background-color: $danger;
           color: $white;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .bug__modal__container {
+    .bug__modal__body {
+      .bug__modal__form__controls {
+        .btn-group {
+          margin-top: 40px;
+          .close-btn {
+            margin-left: 10px;
+          }
         }
       }
     }

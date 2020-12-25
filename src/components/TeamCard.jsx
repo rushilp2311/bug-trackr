@@ -8,15 +8,15 @@ import * as teamService from '../services/teamService';
  * TODO: Load live data from backend.
  */
 
-function TeamCard() {
+function TeamCard(props) {
   const [openBugs, setOpenBugs] = useState(0);
   const [Id, setId] = useState(0);
   const [teamName, setTeamName] = useState('');
   const [closeBugs, setClosedBugs] = useState(0);
   const [teamMember, setTeamMembers] = useState(0);
 
-  useEffect((props) => {
-    const { team } = props;
+  const { team } = props;
+  useEffect(() => {
     const { bugs, id, name } = team;
     setId(id);
     setTeamName(name);
@@ -33,7 +33,7 @@ function TeamCard() {
     }
     getAllUsers();
     getBugsStatus(bugs);
-  }, []);
+  }, [team]);
 
   const deleteTeam = async (teamId) => {
     const result = await teamService.deleteTeamById(teamId);

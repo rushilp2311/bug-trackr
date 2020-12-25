@@ -155,7 +155,7 @@ class BugDetails extends Component {
             </button>
           ) : (
             <button className="reopen_btn" onClick={this.handleChangeBugStatus}>
-              Re-open this Bug
+              Re open this bug
             </button>
           )}
         </div>

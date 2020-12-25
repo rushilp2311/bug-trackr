@@ -9,13 +9,17 @@ import * as teamService from '../services/teamService';
  */
 
 function TeamCard(props) {
-  const { team } = props;
-  const { name, id, bugs } = team;
   const [openBugs, setOpenBugs] = useState(0);
+  const [Id, setId] = useState(0);
+  const [teamName, setTeamName] = useState('');
   const [closeBugs, setClosedBugs] = useState(0);
   const [teamMember, setTeamMembers] = useState(0);
 
   useEffect(() => {
+    const { team } = props;
+    const { bugs, id, name } = team;
+    setId(id);
+    setTeamName(name);
     function getBugsStatus(bugsList) {
       const obugs = bugsList.filter((b) => b.isOpen === true).length;
       const cbugs = bugsList.filter((b) => b.isOpen !== true).length;
@@ -41,10 +45,10 @@ function TeamCard(props) {
   return (
     <div className="teamcard__container">
       <div className="teamcard__header">
-        <p>{`${name}`}</p>
+        <p>{`${teamName}`}</p>
       </div>
       <div className="teamcard__body">
-        <p className="teamid">{`Team Id :${id}`}</p>
+        <p className="teamid">{`Team Id :${Id}`}</p>
         <p className="teammembers">{`${teamMember} Team Members`}</p>
         <p className="openbugs">
           <GoIssueOpened /> {`${openBugs} Open Bugs`}
@@ -52,7 +56,7 @@ function TeamCard(props) {
         <p className="closedbugs">
           <FcCheckmark className="checkmark" /> {`${closeBugs} Closed Bugs`}
         </p>
-        <button onClick={() => deleteTeam(id)}>Delete</button>
+        <button onClick={() => deleteTeam(Id)}>Delete</button>
       </div>
     </div>
   );

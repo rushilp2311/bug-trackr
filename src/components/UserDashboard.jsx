@@ -108,22 +108,6 @@ function UserDashboard() {
                       </ul>
                     </details-menu>
                   </details>
-                  {/* <details>
-                    <summary role="button">
-                      Sort
-                      <span>
-                        <RiArrowDropDownFill />{' '}
-                      </span>
-                    </summary>
-                    <details-menu>
-                      <p>Sort By</p>
-                      <ul>
-                        <li>Newest</li>
-                        <li>Oldest</li>
-                        <li>Most Commented</li>
-                      </ul>
-                    </details-menu>
-                  </details> */}
                 </div>
               </div>
 

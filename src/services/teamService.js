@@ -54,3 +54,14 @@ export async function getAllTeams() {
   const result = await http.get(`${apiEndpoint}`);
   return result;
 }
+
+export async function addTeam(team) {
+  const result = await http.post(`${apiEndpoint}`, team);
+  console.log(result);
+  return result;
+}
+
+export async function deleteTeamById(teamId) {
+  const result = await http.delete(`${apiEndpoint}/${teamId}`);
+  return result;
+}

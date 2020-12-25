@@ -1,6 +1,5 @@
 import http from './httpService';
 import * as teamService from './teamService';
-import * as authService from './authService';
 
 const apiEndpoint = `/users`;
 
@@ -25,10 +24,9 @@ export async function leaveTeam(user) {
   return currentUser;
 }
 
-export async function getAllUsersByTeamId() {
-  const { team } = authService.getCurrentUser();
+export async function getAllUsersByTeamId(teamId) {
   const allUsersList = await http.get(
-    `${apiEndpoint}/getallusersbyteamid/${team}`
+    `${apiEndpoint}/getallusersbyteamid/${teamId}`
   );
   return allUsersList;
 }

@@ -1,77 +1,96 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import Modal from './common/Modal';
-import { joinTeam } from '../services/userService';
-import { UserContext } from '../providers/UserProvider';
+import * as teamService from '../services/teamService';
 
 class AddTeam extends Component {
   state = {
     showModal: false,
-    teamid: 0,
+    data: {},
   };
 
-  joinaTeam = async (user) => {
-    const { teamid } = this.state;
-    const { context } = this.props;
-    const { updateUserState } = context;
-    if (teamid > 0) {
-      const result = await joinTeam(user);
-      if (result) {
-        await updateUserState(result.data);
-      } else {
-        console.log('Team Not Found');
+  handleSubmit = async (e) => {
+    const { data } = this.state;
+    const { name, id } = data;
+
+    e.preventDefault();
+
+    if (name !== undefined && id !== undefined) {
+      const team = await teamService.addTeam({
+        name: data.name,
+        id: data.id,
+        bugs: [],
+      });
+
+      if (team != null) {
+        window.location = '/';
       }
+
+      this.toggleModal();
     }
-    window.location = '/';
   };
 
   handleChange = ({ currentTarget: input }) => {
-    console.log(input.value);
-    if (input.value !== null && input.value > 0) {
-      const teamid = input.value;
-      this.setState({ teamid });
-    }
+    // eslint-disable-next-line react/destructuring-assignment
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
+    this.setState({ data });
   };
 
-  // eslint-disable-next-line react/destructuring-assignment
-  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+  toggleModal = () => {
+    const { showModal } = this.state;
+    this.setState({ showModal: !showModal });
+  };
 
   render() {
-    const { showModal, teamid } = this.state;
+    const { showModal } = this.state;
     return (
-      <div className="addteam__container">
-        <p className="title">You are not in a Team </p>
-        <div className="addteam__body">
-          <h4>Join a team to contribute </h4>
-          <button onClick={this.toggleModal}>Join a Team</button>
-        </div>
+      <>
+        <button
+          className="dashboard__controls__button"
+          onClick={this.toggleModal}
+        >
+          Add a Team
+        </button>
         {showModal ? (
           <Modal>
-            <div className="modal__container">
-              <div className="modal__header">
-                <h1>Join a Team</h1>
+            <div className="modal__container bug__modal__container">
+              <div className="modal__header bug__modal__header">
+                <h1>Add a New Team</h1>
               </div>
-              <div className="modal__body">
-                <h5>Enter the Team Id to Join </h5>
-                <div className="modal__form__controls">
-                  <input type="number" onChange={this.handleChange} />
-                  <UserContext.Consumer>
-                    {(value) => (
-                      <button
-                        onClick={() =>
-                          this.joinaTeam({ ...value, team: teamid })
-                        }
-                      >
-                        Join
-                      </button>
-                    )}
-                  </UserContext.Consumer>
+              <div className="modal__body bug__modal__body">
+                <div className="modal__form__controls bug__modal__form__controls">
+                  <div className="group">
+                    <label>Enter Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      onChange={this.handleChange}
+                      placeholder="Enter name of your team"
+                    />
+                  </div>
+                  <div className="group">
+                    <label>Enter Id</label>
+                    <input
+                      type="number"
+                      name="id"
+                      onChange={this.handleChange}
+                      placeholder="Enter Id of your team"
+                    />
+                  </div>
+
+                  <div className="btn-group">
+                    <button onClick={this.handleSubmit}>Add Team</button>
+                    <button onClick={this.toggleModal} className="close-btn">
+                      Close
+                    </button>
+                  </div>
                 </div>
-                <button onClick={this.toggleModal}>Close</button>
               </div>
             </div>
           </Modal>
         ) : null}
-      </div>
+      </>
     );
   }
 }

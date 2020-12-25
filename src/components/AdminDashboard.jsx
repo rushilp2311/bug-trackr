@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TeamCard from './TeamCard';
 import * as teamService from '../services/teamService';
+import AddTeam from './AddTeam';
 
 /**
  * TODO: Finish the Admin functionality.
@@ -19,11 +20,11 @@ function AdminDashboard() {
     <div className="admin__dashboard">
       <div className="admin__header">
         <p>Admin Dashboard</p>
-        <button>Add a Team</button>
+        <AddTeam />
       </div>
       <div className="admin__body">
         {allTeams.map((team) => (
-          <TeamCard team={team} />
+          <TeamCard team={team} key={team._id} />
         ))}
       </div>
     </div>

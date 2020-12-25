@@ -17,7 +17,7 @@ class TeamProvider extends Component {
     const user = authService.getCurrentUser();
     if (user && user.isAdmin == null && user.team > 0) {
       const team = await teamService.getCurrentUserTeam(user.team);
-      const userList = await userService.getAllUsersByTeamId();
+      const userList = await userService.getAllUsersByTeamId(team.id);
       this.setState({ userList: userList.data });
       this.setState({ team });
     }

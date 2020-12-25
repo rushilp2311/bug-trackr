@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FcCheckmark } from 'react-icons/fc';
 import { GoIssueOpened } from 'react-icons/go';
 import * as userService from '../services/userService';
+import * as teamService from '../services/teamService';
 
 /**
  * TODO: Load live data from backend.
@@ -29,6 +30,14 @@ function TeamCard(props) {
     getAllUsers();
     getBugsStatus(bugs);
   }, []);
+
+  const deleteTeam = async (teamId) => {
+    const result = await teamService.deleteTeamById(teamId);
+    if (result.status === 200) {
+      window.location = '/';
+    }
+  };
+
   return (
     <div className="teamcard__container">
       <div className="teamcard__header">
@@ -43,7 +52,7 @@ function TeamCard(props) {
         <p className="closedbugs">
           <FcCheckmark className="checkmark" /> {`${closeBugs} Closed Bugs`}
         </p>
-        <button>Delete</button>
+        <button onClick={() => deleteTeam(id)}>Delete</button>
       </div>
     </div>
   );

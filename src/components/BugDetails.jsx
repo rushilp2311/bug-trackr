@@ -6,9 +6,6 @@ import * as teamService from '../services/teamService';
 import * as authService from '../services/authService';
 import DeleteBug from './DeleteBug';
 
-/*
-  TODO: Break the comment section and close/delete controls into different components
-*/
 class BugDetails extends Component {
   static contextType = TeamContext;
 
@@ -24,32 +21,27 @@ class BugDetails extends Component {
   componentDidMount = async () => {
     const { location } = this.props;
     const currentbug = location.state;
-
-    const team = await teamService.getCurrentUserTeam(
-      authService.getCurrentUser().team
-    );
-    const bug = team.bugs.find((b) => b._id === currentbug._id);
-
-    this.setState({ bug });
+    this.setState({ bug: currentbug });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     const { data, bug } = this.state;
-    const { location } = this.props;
+
     const { comment } = data;
     const { updateTeamState } = this.context;
+
     if (comment) {
       const user = authService.getCurrentUser();
-      const currentbug = location.state;
+
       const currentcomment = {
         comment: comment,
         email: user.email,
         teamid: user.team,
-        bugid: currentbug._id,
+        bugid: bug._id,
       };
-      const current = { ...bug };
 
+      const current = { ...bug };
       current.comments.push({
         comment: comment,
         createdBy: { _id: user._id, name: user.name },
@@ -58,11 +50,11 @@ class BugDetails extends Component {
       const team = await teamService.addComment(currentcomment);
       if (team != null) {
         const { bugs } = team.data;
-        const currentBug = bugs.find((b) => b._id === currentbug._id);
-
+        const currentBug = bugs.find((b) => b._id === bug._id);
         this.setState({ bug: currentBug });
         updateTeamState(team.data);
       }
+
       document.getElementById('comment').value = '';
     }
   };
@@ -76,20 +68,18 @@ class BugDetails extends Component {
 
   handleDeleteComment = async (commentid) => {
     const user = authService.getCurrentUser();
-    const { location } = this.props;
+    const { bug } = this.state;
     const { updateTeamState } = this.context;
-    const currentbug = location.state;
+
     const deleteComment = {
       teamid: user.team,
-      bugid: currentbug._id,
+      bugid: bug._id,
       commentid: commentid,
     };
     const team = await teamService.deleteComment(deleteComment);
     if (team != null) {
       const { bugs } = team.data;
-      const bug = bugs.find((b) => b._id === currentbug._id);
-
-      this.setState({ bug });
+      this.setState({ bug: bugs.find((b) => b._id === bug._id) });
       updateTeamState(team.data);
     }
   };
@@ -97,20 +87,18 @@ class BugDetails extends Component {
   handleChangeBugStatus = async (e) => {
     e.preventDefault();
     const user = authService.getCurrentUser();
-    const { location } = this.props;
+    const { bug } = this.state;
     const { updateTeamState } = this.context;
-    const currentbug = location.state;
 
     const changeBug = {
       teamid: user.team,
-      bugid: currentbug._id,
+      bugid: bug._id,
     };
+
     const team = await teamService.updateBugStatus(changeBug);
     if (team != null) {
       const { bugs } = team.data;
-      const bug = bugs.find((b) => b._id === currentbug._id);
-
-      this.setState({ bug });
+      this.setState({ bug: bugs.find((b) => b._id === bug._id) });
       updateTeamState(team.data);
     }
   };

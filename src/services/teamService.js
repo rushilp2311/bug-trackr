@@ -49,3 +49,8 @@ export async function updateBugStatus(bug) {
   const result = await http.post(`/bug/changeBugStatus`, bug);
   return result;
 }
+
+export async function getAllTeams() {
+  const result = await http.get(`${apiEndpoint}`);
+  return result;
+}

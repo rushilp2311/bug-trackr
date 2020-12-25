@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 
 .teamcard__container {
   min-width: 300px;
@@ -6,6 +6,7 @@
   border-radius: 3px;
   margin-right: 60px;
   margin-bottom: 60px;
+  border: 1px solid rgb(155, 155, 155);
   box-shadow: 0 4px 8px 0 rgb(255, 255, 255),
     0 6px 20px 0 rgba(224, 225, 233, 0.76);
   .teamcard__header {

@@ -8,14 +8,14 @@ import * as teamService from '../services/teamService';
  * TODO: Load live data from backend.
  */
 
-function TeamCard(props) {
+function TeamCard() {
   const [openBugs, setOpenBugs] = useState(0);
   const [Id, setId] = useState(0);
   const [teamName, setTeamName] = useState('');
   const [closeBugs, setClosedBugs] = useState(0);
   const [teamMember, setTeamMembers] = useState(0);
 
-  useEffect(() => {
+  useEffect((props) => {
     const { team } = props;
     const { bugs, id, name } = team;
     setId(id);

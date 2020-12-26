@@ -24,7 +24,7 @@ class BugDetails extends Component {
     this.setState({ bug: b });
 
     // ws://localhost:3001
-    const socket = socketIOClient('ws://localhost:3001');
+    const socket = socketIOClient('wss://bug-trackr-backend-d.herokuapp.com/');
     socket.on('comment', (data) => {
       this.setState({ bug: data });
       window.localStorage.setItem('currentBug', JSON.stringify(data));

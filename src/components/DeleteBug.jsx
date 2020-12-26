@@ -27,7 +27,9 @@ class DeleteBug extends Component {
 
       if (team != null) {
         this.toggleModal();
-        const socket = socketIOClient('ws://localhost:3001');
+        const socket = socketIOClient(
+          'wss://bug-trackr-backend-d.herokuapp.com/'
+        );
         socket.emit('delete bug', `Bug deleted by ${bug.createdBy.name}`);
         // Add Notification
         updateTeamState(team.data);

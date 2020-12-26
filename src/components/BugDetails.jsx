@@ -20,13 +20,28 @@ class BugDetails extends Component {
   }
 
   componentDidMount = async () => {
-    const { location } = this.props;
-    const currentbug = location.state;
-    this.setState({ bug: currentbug });
-    const socket = socketIOClient('wss://bug-trackr-backend-d.herokuapp.com/');
+    const b = JSON.parse(window.localStorage.getItem('currentBug'));
+    this.setState({ bug: b });
+
+    // ws://localhost:3001
+    const socket = socketIOClient('ws://localhost:3001');
     socket.on('comment', (data) => {
       this.setState({ bug: data });
+      window.localStorage.setItem('currentBug', JSON.stringify(data));
     });
+
+    socket.on('bug', (data) => {
+      this.setState({ bug: data });
+      window.localStorage.setItem('currentBug', JSON.stringify(data));
+    });
+    socket.on('delete bug', (data) => {
+      window.localStorage.removeItem('currentBug');
+      window.location = '/';
+    });
+  };
+
+  componentWillUnmount = () => {
+    window.localStorage.removeItem('currentBug');
   };
 
   handleSubmit = async (e) => {
@@ -105,6 +120,7 @@ class BugDetails extends Component {
     if (team != null) {
       const { bugs } = team.data;
       this.setState({ bug: bugs.find((b) => b._id === bug._id) });
+      window.localStorage.setItem('currentBug', JSON.stringify(this.state.bug));
       updateTeamState(team.data);
     }
   };

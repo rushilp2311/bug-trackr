@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MdDelete } from 'react-icons/md';
+import socketIOClient from 'socket.io-client';
 import * as authService from '../services/authService';
 import Modal from './common/Modal';
 import { TeamContext } from '../providers/TeamProvider';
@@ -26,7 +27,11 @@ class DeleteBug extends Component {
 
       if (team != null) {
         this.toggleModal();
+        const socket = socketIOClient('ws://localhost:3001');
+        socket.emit('delete bug', `Bug deleted by ${bug.createdBy.name}`);
+        // Add Notification
         updateTeamState(team.data);
+        window.localStorage.removeItem('currentBug');
         window.location = '/';
       }
     }

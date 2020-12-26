@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FcCheckmark } from 'react-icons/fc';
+import socketIOClient from 'socket.io-client';
 import { GoComment, GoIssueOpened } from 'react-icons/go';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -24,6 +25,17 @@ function UserDashboard() {
   const orderedUserList = _.sortBy(userList, (o) => o.name);
   let openBugsCount = 0;
   let closeBugsCount = 0;
+
+  useEffect(() => {
+    const socket = socketIOClient('ws://localhost:3001');
+    socket.on('add bug', (data) => {
+      teamContext.updateTeamState(data);
+    });
+    socket.on('delete bug', (data) => {
+      teamContext.updateTeamState(data.team);
+    });
+  }, [teamContext]);
+
   if (teamContext.currentTeam != null) {
     bugs = [...teamContext.currentTeam.bugs];
     if (sortByUser !== '') {
@@ -38,6 +50,7 @@ function UserDashboard() {
     } else {
       orderedBugs = bugs;
     }
+
     openBugsCount = teamContext.currentTeam.bugs.filter(
       (bug) => bug.isOpen === true
     ).length;
@@ -45,6 +58,10 @@ function UserDashboard() {
       (bug) => bug.isOpen !== true
     ).length;
   }
+  const setCurrentBug = (bug) => {
+    window.localStorage.setItem('currentBug', JSON.stringify(bug));
+  };
+
   return (
     <>
       {teamContext.currentTeam ? (
@@ -133,8 +150,8 @@ function UserDashboard() {
                                       <Link
                                         to={{
                                           pathname: '/bugdetails',
-                                          state: bug,
                                         }}
+                                        onClick={() => setCurrentBug(bug)}
                                         style={{ color: '#001233' }}
                                       >
                                         {bug.title}
@@ -182,8 +199,8 @@ function UserDashboard() {
                                       <Link
                                         to={{
                                           pathname: '/bugdetails',
-                                          state: bug,
                                         }}
+                                        onClick={() => setCurrentBug(bug)}
                                         style={{ color: '#001233' }}
                                       >
                                         {bug.title}

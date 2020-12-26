@@ -23,7 +23,7 @@ class BugDetails extends Component {
     const { location } = this.props;
     const currentbug = location.state;
     this.setState({ bug: currentbug });
-    const socket = socketIOClient('ws://localhost:3001/');
+    const socket = socketIOClient(process.env.REACT_APP_API_URL);
     socket.on('comment', (data) => {
       console.log(data);
       this.setState({ bug: data });

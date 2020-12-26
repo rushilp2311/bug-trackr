@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
+import socketIOClient from 'socket.io-client';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { TeamContext } from '../providers/TeamProvider';
 import * as teamService from '../services/teamService';
@@ -22,6 +23,11 @@ class BugDetails extends Component {
     const { location } = this.props;
     const currentbug = location.state;
     this.setState({ bug: currentbug });
+    const socket = socketIOClient('ws://localhost:3001/');
+    socket.on('comment', (data) => {
+      console.log(data);
+      this.setState({ bug: data });
+    });
   };
 
   handleSubmit = async (e) => {
@@ -78,8 +84,9 @@ class BugDetails extends Component {
     };
     const team = await teamService.deleteComment(deleteComment);
     if (team != null) {
-      const { bugs } = team.data;
-      this.setState({ bug: bugs.find((b) => b._id === bug._id) });
+      // const { bugs } = team.data;
+      // this.setState({ bug: bugs.find((b) => b._id === bug._id) });
+
       updateTeamState(team.data);
     }
   };

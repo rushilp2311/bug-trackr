@@ -13,9 +13,10 @@ import { UserContext } from './providers/UserProvider';
 
 function App() {
   const context = useContext(UserContext);
+  const { currentUser } = context;
   return (
     <div className="app">
-      <Header user={context.currentUser} />
+      <Header user={currentUser} />
       <div className="container">
         <Switch>
           <Route path="/signup" component={SignUp} />
@@ -24,8 +25,8 @@ function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/bugdetails" component={BugDetails} />
           <Route path="/teamdetails" component={TeamDetails} />
-          {!context.currentUser && <Route path="/" component={Home} />}
-          {context.currentUser && <Route path="/" component={Dashboard} />}
+          {!currentUser && <Route path="/" component={Home} />}
+          {currentUser && <Route path="/" component={Dashboard} />}
 
           <Redirect to="/not-found" />
         </Switch>

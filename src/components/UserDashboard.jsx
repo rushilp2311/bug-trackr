@@ -27,14 +27,25 @@ function UserDashboard() {
   let closeBugsCount = 0;
 
   useEffect(() => {
-    const socket = socketIOClient('ws://localhost:3001');
+    console.log(process.env.WS);
+    const socket = socketIOClient(process.env.REACT_APP_WS);
     socket.on('add bug', (data) => {
       teamContext.updateTeamState(data);
     });
     socket.on('delete bug', (data) => {
       teamContext.updateTeamState(data.team);
     });
-  }, [teamContext]);
+    socket.on('comment', (data) => {
+      teamContext.updateTeamState(data.team);
+    });
+    socket.on('bug', (data) => {
+      teamContext.updateTeamState(data.team);
+    });
+    return () => {
+      socket.disconnect();
+      socket.close();
+    };
+  }, []);
 
   if (teamContext.currentTeam != null) {
     bugs = [...teamContext.currentTeam.bugs];

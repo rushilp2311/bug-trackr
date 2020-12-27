@@ -10,6 +10,8 @@ import DeleteBug from './DeleteBug';
 class BugDetails extends Component {
   static contextType = TeamContext;
 
+  socket = socketIOClient(process.env.REACT_APP_WS);
+
   constructor(props) {
     super(props);
 
@@ -17,31 +19,37 @@ class BugDetails extends Component {
       bug: {},
       data: {},
     };
+    // ws://192.168.2.19:3001
+    //
   }
 
   componentDidMount = async () => {
     const b = JSON.parse(window.localStorage.getItem('currentBug'));
     this.setState({ bug: b });
 
-    // ws://localhost:3001
-    const socket = socketIOClient('wss://bug-trackr-backend-d.herokuapp.com/');
-    socket.on('comment', (data) => {
-      this.setState({ bug: data });
-      window.localStorage.setItem('currentBug', JSON.stringify(data));
+    this.socket.on('comment', (data) => {
+      this.setState({ bug: data.bug });
+      window.localStorage.setItem('currentBug', JSON.stringify(data.bug));
     });
 
-    socket.on('bug', (data) => {
-      this.setState({ bug: data });
-      window.localStorage.setItem('currentBug', JSON.stringify(data));
+    this.socket.on('bug', (data) => {
+      this.setState({ bug: data.bug });
+      window.localStorage.setItem('currentBug', JSON.stringify(data.bug));
     });
-    socket.on('delete bug', (data) => {
+    this.socket.on('delete bug', (data) => {
       window.localStorage.removeItem('currentBug');
-      window.location = '/';
+      setTimeout(() => {
+        window.location = '/';
+      }, 100);
     });
   };
 
   componentWillUnmount = () => {
-    window.localStorage.removeItem('currentBug');
+    setTimeout(() => {
+      this.socket.disconnet();
+      this.socket.close();
+      window.localStorage.removeItem('currentBug');
+    }, 200);
   };
 
   handleSubmit = async (e) => {

@@ -27,14 +27,16 @@ class DeleteBug extends Component {
 
       if (team != null) {
         this.toggleModal();
-        const socket = socketIOClient(
-          'wss://bug-trackr-backend-d.herokuapp.com/'
-        );
+        const socket = socketIOClient(process.env.REACT_APP_WS);
         socket.emit('delete bug', `Bug deleted by ${bug.createdBy.name}`);
         // Add Notification
         updateTeamState(team.data);
         window.localStorage.removeItem('currentBug');
-        window.location = '/';
+        setTimeout(() => {
+          socket.disconnect();
+          socket.close();
+          window.location = '/';
+        }, 200);
       }
     }
   };

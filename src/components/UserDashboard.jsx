@@ -45,7 +45,7 @@ function UserDashboard() {
       socket.disconnect();
       socket.close();
     };
-  }, []);
+  }, [teamContext]);
 
   if (teamContext.currentTeam != null) {
     bugs = [...teamContext.currentTeam.bugs];

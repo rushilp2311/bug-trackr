@@ -34,6 +34,7 @@ class BugDetails extends Component {
 
     this.socket.on('bug', (data) => {
       this.setState({ bug: data.bug });
+      console.log(data.bug);
       window.localStorage.setItem('currentBug', JSON.stringify(data.bug));
     });
     this.socket.on('delete bug', (data) => {

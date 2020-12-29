@@ -1,5 +1,5 @@
 @import '_variables';
-
+@import '_mixins';
 .bug__details__container {
   color: $main-color;
   width: 85%;
@@ -62,31 +62,17 @@
     margin-top: 60px;
     button {
       margin-right: 30px;
-      border: 0;
-      background-color: $danger;
-      color: white;
-      border-radius: 5px;
-      padding: 5px 12px;
+      @include btn($danger, $white);
     }
-    button:hover {
-      background-color: darken($color: $danger, $amount: 10);
-    }
+
     .close_btn {
-      background-color: $main-color;
+      @include btn($main-color, $white);
     }
     .close_btn:hover {
       background-color: lighten($color: $main-color, $amount: 10);
     }
     .reopen_btn {
-      border: 1px solid $main-color;
-      color: $main-color;
-      background-color: white;
-      transition-duration: 0.3s;
-    }
-    .reopen_btn:hover {
-      border: 1px solid $main-color;
-      color: $white;
-      background-color: $main-color;
+      @include secondary-btn($white, $main-color, $main-color);
     }
   }
   .bug__details__comments {
@@ -104,6 +90,7 @@
       margin-top: 20px;
       padding: 10px 22px;
       display: flex;
+      //Mixin
       input {
         display: block;
         width: 60% !important;
@@ -121,12 +108,8 @@
         padding: 9px 22.5px;
       }
       button {
-        padding: 5px 12px;
         min-width: 100px;
-        border: 0;
-        background-color: $main-color;
-        border-radius: 4px;
-        color: $white;
+        @include btn($main-color, $white);
         margin-left: 20px;
         margin-top: 0px;
       }
@@ -140,7 +123,6 @@
         list-style-type: none;
         padding: 10px 22px;
         border-top: 1px solid rgb(201, 199, 199);
-        // border-bottom: 1px solid rgb(201, 199, 199);
         .comment__title {
           display: flex;
           justify-content: space-between;

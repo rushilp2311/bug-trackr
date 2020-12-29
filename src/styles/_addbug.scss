@@ -1,8 +1,7 @@
 @import '_variables';
+@import '_mixins';
 .bug__modal__container {
   height: auto;
-  .bug__modal__header {
-  }
   .bug__modal__body {
     .bug__modal__form__controls {
       display: flex;
@@ -26,19 +25,13 @@
           border-radius: 2px;
         }
       }
+      //Mixin possible
       .btn-group {
         margin-top: 50px;
         display: flex;
         justify-content: center;
         .close-btn {
-          background-color: $white;
-          color: $danger;
-          border: 1px solid $danger;
-          transition-duration: 0.4s;
-        }
-        .close-btn:hover {
-          background-color: $danger;
-          color: $white;
+          @include secondary-btn($white, $danger, $danger);
         }
       }
     }

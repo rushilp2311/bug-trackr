@@ -1,4 +1,5 @@
 @import '_variables';
+@import '_mixins';
 #modal {
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
@@ -52,6 +53,7 @@
       justify-content: space-between;
       margin-top: 20px;
       height: fit-content;
+      //Mixin
       input {
         width: 100%;
         padding: 5px 12px;
@@ -64,28 +66,19 @@
         color: $main-color;
         border-radius: 2px;
       }
+      //Mixin
       button {
-        padding: 5px 12px;
+        @include btn($success, $white);
         min-width: 100px;
-        border: 0;
-        background-color: $success;
-        border-radius: 4px;
-        color: $white;
         margin-left: 20px;
         margin-top: 0px;
       }
-      button:hover {
-        background-color: darken($color: $success, $amount: 10);
-      }
     }
   }
+  //Mixin
   button {
-    padding: 5px 12px;
+    @include btn($danger, $white);
     min-width: 100px;
-    border: 0;
-    background-color: $danger;
-    border-radius: 4px;
-    color: $white;
     margin-top: 50px;
   }
 }

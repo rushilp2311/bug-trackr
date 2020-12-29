@@ -1,5 +1,5 @@
 @import '_variables';
-
+@import '_mixins';
 .team__details__container {
   .team__details__header {
     p {
@@ -45,14 +45,8 @@
     margin-top: 30px;
     text-align: center;
     button {
-      border: 0;
-      border-radius: 5px;
+      @include btn($main-color, $primary-color);
       padding: 10px 22px;
-      color: $primary-color;
-      background-color: $main-color;
-    }
-    button:hover {
-      background-color: lighten($color: $main-color, $amount: 10);
     }
   }
 }

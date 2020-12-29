@@ -1,0 +1,25 @@
+@mixin btn($bgcolor, $color) {
+  background-color: $bgcolor;
+  color: $color;
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  padding: 5px 12px;
+  &:hover {
+    background-color: darken($color: $bgcolor, $amount: 10);
+  }
+}
+
+@mixin secondary-btn($bgcolor, $color, $bordercolor) {
+  background-color: $bgcolor;
+  color: $color;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 12px;
+  border: 1px solid $bordercolor;
+  transition-duration: 0.4s;
+  &:hover {
+    background-color: $color;
+    color: $white;
+  }
+}

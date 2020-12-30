@@ -19,10 +19,9 @@
           margin-right: 10px;
           .search__bar__input {
             input {
-              display: block;
               width: 100% !important;
               padding: 4px 32.5px;
-              height: fit-content;
+              // height: fit-content;
               line-height: 20px;
               overflow: visible;
               color: #303336;
@@ -48,6 +47,10 @@
             }
           }
           .search__list {
+            width: 80%;
+            background-color: $white;
+            position: absolute;
+            z-index: 1000;
             border-top-right-radius: 5px;
             border-top-left-radius: 5px;
             border: 0.4px solid rgb(218, 218, 218);
@@ -108,14 +111,15 @@
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          background-color: rgb(233, 233, 235);
-          border: 1px solid #e1e4e8;
+          background-color: $main-color;
+          border: 1px solid $main-color;
           border-left-width: 1px;
           border-right-width: 1px;
           border-top-left-radius: 6px;
           border-top-right-radius: 6px;
           padding: 16px;
           padding-bottom: 0;
+          color: $white;
           .dashboard__bugstatus {
             display: flex;
             flex-direction: row;
@@ -142,10 +146,12 @@
             .react-tabs__tab-list {
               margin: 0 !important;
               border: 0;
+
               .react-tabs__tab--selected {
-                background-color: rgb(233, 233, 235);
+                background-color: $main-color;
                 border: 0;
-                border-bottom: 3px solid $main-color;
+                border-bottom: 3px solid $primary-color;
+                color: $white;
               }
             }
           }
@@ -172,9 +178,9 @@
                 }
               }
               details-menu {
+                color: $main-color;
                 border-radius: 5px;
-                border: 0.4px solid rgb(218, 218, 218);
-                border-top: 0;
+                border: 0.4px solid $main-color;
                 position: absolute;
                 width: 200px;
                 z-index: 99;
@@ -184,9 +190,6 @@
                 left: auto;
                 background-color: $white;
                 animation-duration: 0.12s;
-                box-shadow: 0 4px 8px 0 rgb(204, 203, 203),
-                  0 6px 20px 0 rgba(224, 225, 233, 0.76);
-
                 animation: cubic-bezier(0, 0.1, 0.1, 1) backwards;
                 p {
                   margin-top: 10px;
@@ -200,11 +203,11 @@
                     list-style: none;
 
                     padding: 10px 12px;
-                    border-top: 0.4px solid rgb(218, 218, 218);
+                    border-top: 0.4px solid $main-color;
                     cursor: pointer;
                   }
                   li:hover {
-                    background-color: rgb(233, 233, 235);
+                    background-color: lighten($color: $main-color, $amount: 70);
                   }
                 }
               }
@@ -216,6 +219,9 @@
         ul {
           padding: 0;
           .react-tabs__tab-panel {
+            li:first-child {
+              border-bottom: 0;
+            }
             .no__bugs {
               margin-top: 150px !important;
               text-align: center;
@@ -229,7 +235,7 @@
             padding: 8px;
             height: auto;
             color: $main-color;
-            border: 1px solid #e1e4e8;
+            border: 1px solid $main-color;
 
             .bugs__list__content {
               .bugs__list__info__header {
@@ -260,7 +266,7 @@
             }
           }
           .bugs__list:hover {
-            background-color: rgb(233, 233, 235);
+            background-color: lighten($color: $main-color, $amount: 70);
           }
         }
       }
@@ -282,7 +288,7 @@
             justify-content: center;
             .search__bar {
               margin-right: 10px;
-
+              position: relative;
               .search__list {
                 width: 75%;
                 position: absolute;
@@ -381,8 +387,8 @@
             .search__list {
               width: 100%;
               position: absolute;
-              background-color: white;
               z-index: 1000;
+              background-color: white;
               ul {
                 li {
                   .search__bug__title {

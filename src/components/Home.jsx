@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import team from '../images/team.svg';
+import home from '../images/home.svg';
 import '../styles/app.scss';
 
 /**
@@ -21,7 +21,7 @@ function Home() {
           <button className="btn">Get Started</button>
         </Link>
       </main>
-      <img src={team} alt="team" />
+      <img src={home} alt="home" />
     </div>
   );
 }

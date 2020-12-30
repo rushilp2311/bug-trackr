@@ -9,6 +9,10 @@ class AddTeam extends Component {
     teamid: 0,
   };
 
+  componentDidMount() {
+    document.title = 'Join A Team | BugTrackr';
+  }
+
   joinaTeam = async (user) => {
     const { teamid } = this.state;
     const { context } = this.props;

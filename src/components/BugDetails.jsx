@@ -19,13 +19,12 @@ class BugDetails extends Component {
       bug: {},
       data: {},
     };
-    // ws://192.168.2.19:3001
-    //
   }
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const b = JSON.parse(window.localStorage.getItem('currentBug'));
     this.setState({ bug: b });
+    document.title = `Bug: ${b.title} | BugTrackr`;
 
     this.socket.on('comment', (data) => {
       this.setState({ bug: data.bug });
@@ -37,7 +36,7 @@ class BugDetails extends Component {
       console.log(data.bug);
       window.localStorage.setItem('currentBug', JSON.stringify(data.bug));
     });
-    this.socket.on('delete bug', (data) => {
+    this.socket.on('delete bug', () => {
       window.localStorage.removeItem('currentBug');
       setTimeout(() => {
         window.location = '/';

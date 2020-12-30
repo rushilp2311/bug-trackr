@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import team from '../images/team.svg';
 import '../styles/app.scss';
@@ -8,6 +8,10 @@ import '../styles/app.scss';
  */
 
 function Home() {
+  useEffect(() => {
+    document.title = 'Home | BugTrackr';
+  }, []);
+
   return (
     <div className="main__header">
       <main className="heading">

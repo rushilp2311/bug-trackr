@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { TeamContext } from '../providers/TeamProvider';
 import * as authService from '../services/authService';
@@ -7,6 +7,12 @@ function TeamDetails() {
   const currentUser = authService.getCurrentUser();
   const team = useContext(TeamContext);
   const { userList } = team;
+  useEffect(() => {
+    document.title = `TeamId: ${currentUser.team} | Team Detail | BugTrackr`;
+    return () => {
+      document.title = 'Home | BugTrackr';
+    };
+  });
   return (
     <div className="team__details__container">
       <div className="team__details__header">

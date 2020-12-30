@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 import { leaveTeam } from '../services/userService';
@@ -24,6 +24,13 @@ const leaveTeamHandle = async (updateUserState, currentUser) => {
 function Profile() {
   const user = authService.getCurrentUser();
   const userContext = useContext(UserContext);
+
+  useEffect(() => {
+    document.title = 'Profile Page | BugTrackr';
+    return () => {
+      document.title = 'Home | BugTrackr';
+    };
+  }, []);
   return (
     <>
       <div className="profile__container">

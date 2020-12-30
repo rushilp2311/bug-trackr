@@ -219,8 +219,8 @@
         ul {
           padding: 0;
           .react-tabs__tab-panel {
-            li:first-child {
-              border-bottom: 0;
+            li:not(:first-child) {
+              border-top: 0;
             }
             .no__bugs {
               margin-top: 150px !important;

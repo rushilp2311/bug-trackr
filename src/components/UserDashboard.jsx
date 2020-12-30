@@ -4,6 +4,7 @@ import { FcCheckmark } from 'react-icons/fc';
 import socketIOClient from 'socket.io-client';
 import { GoComment, GoIssueOpened } from 'react-icons/go';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { toast, ToastContainer, Zoom } from 'react-toastify';
 import 'react-tabs/style/react-tabs.css';
 import { RiArrowDropDownFill } from 'react-icons/ri';
 import _ from 'lodash';
@@ -25,20 +26,57 @@ function UserDashboard() {
   const orderedUserList = _.sortBy(userList, (o) => o.name);
   let openBugsCount = 0;
   let closeBugsCount = 0;
+  const showSuccessNotification = (errorMsg) => {
+    toast.success(`${errorMsg}`, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
+  const showErrorNotification = (errorMsg) => {
+    toast.error(`${errorMsg}`, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  const showInfoNotification = (errorMsg) => {
+    toast.info(`${errorMsg}`, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   useEffect(() => {
     console.log(process.env.WS);
     const socket = socketIOClient(process.env.REACT_APP_WS);
     socket.on('add bug', (data) => {
+      showSuccessNotification('New Bug added');
       teamContext.updateTeamState(data);
     });
     socket.on('delete bug', (data) => {
+      showInfoNotification(`${data.message}`);
+      console.log(data);
       teamContext.updateTeamState(data.team);
     });
     socket.on('comment', (data) => {
       teamContext.updateTeamState(data.team);
     });
     socket.on('bug', (data) => {
+      showInfoNotification('Bug status was Changed');
       teamContext.updateTeamState(data.team);
     });
     return () => {
@@ -75,6 +113,18 @@ function UserDashboard() {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        transition={Zoom}
+        pauseOnHover
+      />
       {teamContext.currentTeam ? (
         <div className="dashboard__container">
           <div className="dashboard__header">
@@ -87,7 +137,10 @@ function UserDashboard() {
             </div>
             <div className="dashboard__controls">
               <Search />
-              <AddBug />
+              <AddBug
+                showSuccessNotification={showSuccessNotification}
+                showErrorNotification={showErrorNotification}
+              />
             </div>
           </div>
           <div className="dashboard__body">
@@ -161,6 +214,11 @@ function UserDashboard() {
                                       <Link
                                         to={{
                                           pathname: '/bugdetails',
+                                          notify: {
+                                            showSuccessNotifictaion: showSuccessNotification,
+                                            showErrorNotifictaion: showErrorNotification,
+                                            showInfoNotifictaion: showInfoNotification,
+                                          },
                                         }}
                                         onClick={() => setCurrentBug(bug)}
                                         style={{ color: '#001233' }}

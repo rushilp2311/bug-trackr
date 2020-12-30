@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
+
 import Modal from './common/Modal';
 import { TeamContext } from '../providers/TeamProvider';
 import * as teamService from '../services/teamService';
@@ -17,6 +18,7 @@ class AddBug extends Component {
     const { updateTeamState } = this.context;
     const { data } = this.state;
     const { title, description } = data;
+    const { showErrorNotification } = this.props;
 
     e.preventDefault();
 
@@ -36,6 +38,10 @@ class AddBug extends Component {
       }
 
       this.toggleModal();
+    } else {
+      showErrorNotification(
+        'Error Occured. Title or Description cannot be empty'
+      );
     }
   };
 

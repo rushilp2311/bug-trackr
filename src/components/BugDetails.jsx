@@ -33,7 +33,6 @@ class BugDetails extends Component {
 
     this.socket.on('bug', (data) => {
       this.setState({ bug: data.bug });
-      console.log(data.bug);
       window.localStorage.setItem('currentBug', JSON.stringify(data.bug));
     });
     this.socket.on('delete bug', () => {
@@ -45,11 +44,7 @@ class BugDetails extends Component {
   };
 
   componentWillUnmount = () => {
-    setTimeout(() => {
-      this.socket.disconnet();
-      this.socket.close();
-      window.localStorage.removeItem('currentBug');
-    }, 200);
+    window.localStorage.removeItem('currentBug');
   };
 
   handleSubmit = async (e) => {
@@ -128,7 +123,7 @@ class BugDetails extends Component {
     if (team != null) {
       const { bugs } = team.data;
       this.setState({ bug: bugs.find((b) => b._id === bug._id) });
-      window.localStorage.setItem('currentBug', JSON.stringify(this.state.bug));
+      window.localStorage.setItem('currentBug', JSON.stringify(bug));
       updateTeamState(team.data);
     }
   };

@@ -1,0 +1,23 @@
+@import '_variables';
+@import '_mixins';
+
+.notfound__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .notfound__image {
+    height: 600px;
+  }
+  button {
+    margin-top: 30px;
+    @include btn($main-color, $primary-color);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .notfound__container {
+    .notfound__image {
+      height: 300px;
+    }
+  }
+}

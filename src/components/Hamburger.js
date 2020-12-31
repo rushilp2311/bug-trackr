@@ -4,7 +4,7 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
-
+import * as authService from '../services/authService';
 import {
   staggerText,
   staggerReveal,
@@ -24,7 +24,7 @@ const Hamburger = ({ state }) => {
   let line2 = useRef(null);
   let line3 = useRef(null);
   let info = useRef(null);
-
+  const user = authService.getCurrentUser();
   useEffect(() => {
     if (state.clicked === false) {
       staggerRevealClose(reveal2, reveal1);
@@ -102,22 +102,11 @@ const Hamburger = ({ state }) => {
                 </ul>
               </nav>
               <div ref={(el) => (info = el)} className="info">
+                {user && <h3>{`Name : ${user.name}`}</h3>}
                 <Link to="/logout">
                   <button className="logout__button">Logout</button>
                 </Link>
               </div>
-              {/* <div className='locations'>
-                Locations:
-                
-                {cities.map(el => (
-                  <span
-                    key={el.name}
-                    onMouseEnter={() => handleCity(el.image, cityBackground)}
-                    onMouseOut={() => handleCityReturn(cityBackground)}>
-                    {el.name}
-                  </span>
-                ))}
-              </div> */}
             </div>
           </div>
         </div>

@@ -1,47 +1,79 @@
-import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { withRouter, Link, NavLink } from 'react-router-dom';
+import Hamburger from './Hamburger';
 import '../styles/app.scss';
-import * as authService from '../services/authService';
-import { UserContext } from '../providers/UserProvider';
 
-function Header(props) {
-  const { user } = props;
-  const currentUser = useContext(UserContext);
+const Header = ({ history, user }) => {
+  const [state, setState] = useState({
+    initial: false,
+    clicked: null,
+    menuName: 'Menu',
+  });
+  // State of our button
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    history.listen(() => {
+      setState({ clicked: false, menuName: 'Menu' });
+    });
+  }, [history]);
+
+  const disableMenu = () => {
+    setDisabled(!disabled);
+    setTimeout(() => {
+      setDisabled(false);
+    }, 500);
+  };
+  // Toggle menu
+  const handleMenu = () => {
+    disableMenu();
+    if (state.initial === false) {
+      setState({
+        initial: null,
+        clicked: true,
+        menuName: 'Close',
+      });
+    } else if (state.clicked === true) {
+      setState({
+        clicked: !state.clicked,
+        menuName: 'Menu',
+      });
+    } else if (state.clicked === false) {
+      setState({
+        clicked: !state.clicked,
+        menuName: 'Close',
+      });
+    }
+  };
+
   return (
-    <header className="header">
-      <Link to="/" style={{ textDecoration: 'none' }}>
-        <p className="logo">Bug Trackr</p>
-      </Link>
-      <div className="header__links">
+    <header>
+      <div className="inner-header">
+        <div className="logo">
+          <Link to="/">BugTrackr.</Link>
+        </div>
+        {user && (
+          <div className="menu">
+            <button disabled={disabled} onClick={handleMenu}>
+              {state.menuName}
+            </button>
+          </div>
+        )}
         {!user && (
-          <>
+          <div className="header__links">
             <NavLink to="/signin" style={{ textDecoration: 'none' }}>
               <p>Sign In</p>
             </NavLink>
+
             <Link to="/signup" style={{ textDecoration: 'none' }}>
               <button>Sign Up</button>
             </Link>
-          </>
-        )}
-        {user && (
-          <>
-            <NavLink
-              to={{
-                pathname: '/profile',
-                profile: {
-                  updateUserState: currentUser.updateUserState,
-                },
-              }}
-            >
-              <p>{authService.getCurrentUser().name}</p>
-            </NavLink>
-            <NavLink to="/logout">
-              <button className="logout__button">Logout</button>
-            </NavLink>
-          </>
+          </div>
         )}
       </div>
+      <Hamburger state={state} />
     </header>
   );
-}
-export default Header;
+};
+
+export default withRouter(Header);

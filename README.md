@@ -22,3 +22,4 @@ To check the code for backend you can visit https://github.com/rushilp2311/bug-t
   - Learned about making API calls to backend and displaying data.
   - Authentication and Authorization using JWT.
   - Learned about state management using React's Context API.
+  - Real Time Updates using socket.io
